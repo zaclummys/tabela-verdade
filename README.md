@@ -1,5 +1,7 @@
 # Tabela-verdade
 
+Ferramenta para automatizar a criação da tabela-verdade de expressões lógicas. [Experimentar agora mesmo!](https://zaclummys.github.io/tabela-verdade/dist/index.html)
+
 ## Install
 
 ```bash
