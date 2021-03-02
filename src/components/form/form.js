@@ -30,14 +30,28 @@ class Form extends React.Component {
                     autoComplete="off"
                     error={this.props.error}
                     defaultValue={this.props.input}
-                    onChange={(event) => this.onChange(event)} />
+                    onChange={event => this.onChange(event)} />
 
                 <div className={FormStyle.description}>
-                    <span className={FormStyle.operation}>Negação: <b>&#xAC;</b>, <b>&#x7E;</b>, <b>&#x21;</b></span>
-                    <span className={FormStyle.operation}>Conjunção: <b>&#x2227;</b>, <b>&#x26;</b>, <b>&#x2A;</b></span>
-                    <span className={FormStyle.operation}>Disjunção: <b>&#x2228;</b>, <b>&#x7C;</b>, <b>&#x2B;</b></span>
-                    <span className={FormStyle.operation}>Implicação: <b>&#x2192;</b>, <b>&#x21D2;</b>, <b>-&#x3E;</b></span>
-                    <span className={FormStyle.operation}>Equivalência: <b>&#x2192;</b>, <b>&#x21D2;</b>, <b>&#x3C;-&#x3E;</b></span>
+                    <span className={FormStyle.operation}>
+                        Negação: <b>&#xAC;</b>, <b>&#x7E;</b>, <b>&#x21;</b>
+                    </span>
+
+                    <span className={FormStyle.operation}>
+                        Conjunção: <b>&#x2227;</b>, <b>&#x26;</b>, <b>&#x2A;</b>
+                    </span>
+
+                    <span className={FormStyle.operation}>
+                        Disjunção: <b>&#x2228;</b>, <b>&#x7C;</b>, <b>&#x2B;</b>
+                    </span>
+
+                    <span className={FormStyle.operation}>
+                        Implicação: <b>&#x2192;</b>, <b>&#x21D2;</b>, <b>-&#x3E;</b>
+                    </span>
+
+                    <span className={FormStyle.operation}>
+                        Equivalência: <b>&#x2192;</b>, <b>&#x21D2;</b>, <b>&#x3C;-&#x3E;</b>
+                    </span>
                 </div>
             </div>
         );
