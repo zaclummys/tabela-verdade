@@ -12,7 +12,7 @@ function HeaderDescription () {
         <p className={HeaderStyle.description}>
             Esta é uma ferramenta que automatiza a criação da tabela-verdade de expressões lógicas.
             Ao digitar, a tabela atualizará automaticamente e exibirá todas as
-            interpretações possíveis. Além disso, você poderia acompanhar passo a passo o
+            combinações possíveis. Além disso, você poderá acompanhar progressivamente o
             desenvolvimento da expressão lógica através das sub-expressões. Você poderá utilizar
             diversos caracteres para compor a expressão lógica.
         </p>
