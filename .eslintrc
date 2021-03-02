@@ -6,6 +6,7 @@
             "SwitchCase": 1
         }],
         "no-bitwise": "off",
+        "no-console": "off",
         "arrow-parens": ["error", "as-needed"],
         "arrow-body-style": "off",
         "class-methods-use-this": "off",
