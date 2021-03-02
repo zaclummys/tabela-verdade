@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: #fefefe;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, .87);
+    margin: 0;
+}
