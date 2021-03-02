@@ -16,7 +16,7 @@ export default class Compiler {
     }
 
     store (expression) {
-        if (this.expressions.some((e) => expression.equals(e))) {
+        if (this.expressions.some(e => expression.equals(e))) {
             return;
         }
 

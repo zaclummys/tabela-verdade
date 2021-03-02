@@ -35,8 +35,8 @@ export default class Interpreter {
     }
 
     interpret () {
-        this.matrix = this.permutations.map((values) => {
-            return this.expressions.map((expression) => {
+        this.matrix = this.permutations.map(values => {
+            return this.expressions.map(expression => {
                 return this.eval(values, expression);
             });
         });
