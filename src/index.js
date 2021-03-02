@@ -8,6 +8,8 @@ import App from './components/app/app';
 import 'normalize.css';
 import './index.css';
 
+import './register-service-worker';
+
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
@@ -17,11 +19,7 @@ ReactDOM.render(
     document.getElementById('root'),
 );
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js');
-    });
-}
+
 
 if (module.hot) {
     module.hot.accept();
