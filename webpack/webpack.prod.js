@@ -17,5 +17,8 @@ module.exports = merge(common, {
     },
     plugins: [
         new WorkboxPlugin.GenerateSW(),
-    ]
+    ],
+    performance: {
+        hints: 'warning',
+    },
 });

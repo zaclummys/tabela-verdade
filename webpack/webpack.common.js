@@ -48,8 +48,4 @@ module.exports = {
         }),
         new MiniCSSExtractPlugin(),
     ],
-
-    performance: {
-        hints: 'warning',
-    },
 };
