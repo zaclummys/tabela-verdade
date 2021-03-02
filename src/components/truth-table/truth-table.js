@@ -28,19 +28,18 @@ class TruthTable extends React.Component {
 
     createTruthTable (input) {
         if (input) {
-            try {
-                const { matrix, expressions } = createTruthTable(input);
-
-                this.setState({
-                    matrix,
-                    expressions,
+            createTruthTable(input)
+                .then(table => {
+                    this.setState({
+                        matrix: table.matrix,
+                        expressions: table.expressions,
+                    });
+        
+                    this.props.dispatch(setError(false));
+                })
+                .catch(() => {
+                    this.props.dispatch(setError(true));
                 });
-
-                this.props.dispatch(setError(false));
-            }
-            catch (e) {
-                this.props.dispatch(setError(true));
-            }
         }
         else {
             this.setState({

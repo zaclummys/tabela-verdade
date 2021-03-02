@@ -4,7 +4,7 @@ import Parser from './parser';
 import Compiler from './compiler';
 import Interpreter from './interpreter';
 
-export default function create (input) {
+export default async function create (input) {
     // Parser
     const source = new Source(input);
     const lexer = new Lexer(source);
