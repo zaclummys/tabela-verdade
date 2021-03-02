@@ -7,9 +7,9 @@ export const ASTERISK = '*';
 export const AMPERSAND = '&';
 export const LOGICAL_AND = '∧';
 
+export const PLUS = '+';
 export const LOWER_V = 'v';
 export const UPPER_V = 'V';
-export const PLUS = '+';
 export const VERTICAL_LINE = '|';
 export const LOGICAL_OR = '∨';
 
