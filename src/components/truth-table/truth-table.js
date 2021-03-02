@@ -34,7 +34,7 @@ class TruthTable extends React.Component {
                         matrix: table.matrix,
                         expressions: table.expressions,
                     });
-        
+
                     this.props.dispatch(setError(false));
                 })
                 .catch(() => {
