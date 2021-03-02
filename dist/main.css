@@ -16,14 +16,32 @@
     font-size: 16px;
 }
 
+.form__form--2iZUJ {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.form__description--iUeC3 {    
+    margin-top: 16px;
+    margin-bottom: 16px;
+    
+    font-size: 14px;
+    text-align: center;
+
+    color: rgba(0,0,0,0.65098);
+}
+
+.form__operation--GNDVY {
+    margin-right: 32px;
+}
 .input__input--1qDiN {
     display: inline-block;
     padding: 12px 12px;
     
     width: 100%;
 
-    margin-top: 24px;
-    margin-bottom: 24px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 
     font-size: 16px;
 
@@ -46,7 +64,7 @@
     outline: none;
 }
 
-.input__error--3L5Pq .input__input--1qDiN {
+.input__input--1qDiN[data-error="true"] {
     border-color:#f5222d;
     box-shadow: 0 0 0 2px rgba(245,34,45,0.2);
 }
