@@ -13,11 +13,11 @@ export default class Interpreter {
     constructor (names, expressions) {
         const permutations = [];
 
-        for (let i = 0; i < (1 << names.length); i += 1) {
+        for (let i = (1 << names.length) - 1; i >= 0; i -= 1) {
             const values = {};
 
             for (let j = 0; j < names.length; j += 1) {
-                if (i & (2 ** j)) {
+                if (i & (1 << j)) {
                     values[names[j]] = true;
                 }
                 else {
