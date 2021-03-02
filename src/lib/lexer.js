@@ -3,11 +3,14 @@ import {
     TILDE,
     EXCLAMATION,
 
+    CARET,
     ASTERISK,
     AMPERSAND,
     LOGICAL_AND,
 
     PLUS,
+    LOWER_V,
+    UPPER_V,
     VERTICAL_LINE,
     LOGICAL_OR,
 
@@ -113,6 +116,7 @@ export default class Lexer {
 
                 return new Not();
 
+            case CARET:
             case ASTERISK:
             case AMPERSAND:
             case LOGICAL_AND:
@@ -121,6 +125,8 @@ export default class Lexer {
                 return new And();
 
             case PLUS:
+            case LOWER_V:
+            case UPPER_V:
             case VERTICAL_LINE:
             case LOGICAL_OR:
                 this.source.bump();
