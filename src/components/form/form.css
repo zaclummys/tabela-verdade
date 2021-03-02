@@ -11,6 +11,11 @@
     text-align: center;
 
     color: #000000a6;
+    transition: all 100ms ease-out;
+}
+
+.description:hover {
+    color: #000000FF;
 }
 
 .operation {
