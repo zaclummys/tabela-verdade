@@ -1,6 +1,7 @@
 const path = require('path');
 
 const ESLintPlugin = require('eslint-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
@@ -47,6 +48,10 @@ module.exports = {
             template: path.resolve(__dirname, '../src/index.html'),
         }),
         new MiniCSSExtractPlugin(),
+        new WorkboxPlugin.GenerateSW({
+            clientsClaim: true,
+            skipWaiting: true,
+        }),
     ],
 
     performance: {
