@@ -50,7 +50,7 @@ class Form extends React.Component {
                     </span>
 
                     <span className={FormStyle.operation}>
-                        Equivalência: <b>&#x2192;</b>, <b>&#x21D2;</b>, <b>&#x3C;-&#x3E;</b>
+                        Equivalência: <b>&#x2194;</b>, <b>&#x21d4;</b>, <b>&#x3C;-&#x3E;</b>
                     </span>
                 </div>
             </div>
