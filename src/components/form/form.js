@@ -6,6 +6,9 @@ import FormStyle from './form.css';
 import Input from '../input/input';
 import { clearInput, setInput, setError } from '../../redux/actions';
 
+function Op ({ children }) {
+    return <span className={FormStyle.operator}>{children}</span>;
+}
 class Form extends React.Component {
     onChange (event) {
         const input = event.target.value;
@@ -34,23 +37,23 @@ class Form extends React.Component {
 
                 <div className={FormStyle.description}>
                     <span className={FormStyle.operation}>
-                        Negação: <b>&#xAC;</b>, <b>&#x7E;</b>, <b>&#x21;</b>
+                        Negação: <Op>&#xAC;</Op><Op>&#x7E;</Op><Op>&#x21;</Op>
                     </span>
 
                     <span className={FormStyle.operation}>
-                        Conjunção: <b>&#x2227;</b>, <b>&#x26;</b>, <b>&#x2A;</b>
+                        Conjunção: <Op>&#x2227;</Op><Op>&#x26;</Op><Op>&#x2A;</Op>
                     </span>
 
                     <span className={FormStyle.operation}>
-                        Disjunção: <b>&#x2228;</b>, <b>&#x7C;</b>, <b>&#x2B;</b>
+                        Disjunção: <Op>&#x2228;</Op><Op>&#x7C;</Op><Op>&#x2B;</Op>
                     </span>
 
                     <span className={FormStyle.operation}>
-                        Implicação: <b>&#x2192;</b>, <b>&#x21D2;</b>, <b>-&#x3E;</b>
+                        Implicação: <Op>&#x2192;</Op><Op>&#x21D2;</Op><Op>-&#x3E;</Op>
                     </span>
 
                     <span className={FormStyle.operation}>
-                        Equivalência: <b>&#x2194;</b>, <b>&#x21d4;</b>, <b>&#x3C;-&#x3E;</b>
+                        Equivalência: <Op>&#x2194;</Op><Op>&#x21d4;</Op><Op>&#x3C;-&#x3E;</Op>
                     </span>
                 </div>
             </div>
