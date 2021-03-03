@@ -16,7 +16,11 @@ module.exports = merge(common, {
         ],
     },
     plugins: [
-        new WorkboxPlugin.GenerateSW(),
+        new WorkboxPlugin.GenerateSW({
+            exclude: [/\.html$/],            
+            skipWaiting: true,
+            clientsClaim: true,
+        }),
     ],
     performance: {
         hints: 'warning',
