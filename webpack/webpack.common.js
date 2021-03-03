@@ -46,6 +46,8 @@ module.exports = {
             favicon: path.resolve(__dirname, '../src/favicon.png'),
             template: path.resolve(__dirname, '../src/index.html'),
         }),
-        new MiniCSSExtractPlugin(),
+        new MiniCSSExtractPlugin({
+            filename: '[name].[contenthash].css',
+        }),
     ],
 };
