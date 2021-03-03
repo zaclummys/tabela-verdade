@@ -37,7 +37,7 @@ import {
     OpeningParenthesis,
     ClosingParenthesis,
 
-    EOF,
+    End,
 } from './tokens';
 
 function isWhiteSpace (ch) {
@@ -187,7 +187,7 @@ export default class Lexer {
                     throw new Error('Unexpected character');
                 }
 
-                return new EOF();
+                return new End();
         }
     }
 }

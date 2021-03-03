@@ -10,7 +10,7 @@ import Equivalence from './equivalence';
 import OpeningParenthesis from './opening-parenthesis';
 import ClosingParenthesis from './closing-parenthesis';
 
-import EOF from './eof';
+import End from './end';
 
 export {
     Name,
@@ -25,5 +25,5 @@ export {
     OpeningParenthesis,
     ClosingParenthesis,
 
-    EOF,
+    End,
 };
