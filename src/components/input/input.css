@@ -12,7 +12,9 @@
     border: 1px solid #d9d9d9;
     border-radius: 2px;
 
-    transition: all 100ms ease-out;
+    transition-duration: 100ms;
+    transition-timing-function: ease-out;
+    transition-property: border-color, box-shadow;
 }
 
 .input:hover {
