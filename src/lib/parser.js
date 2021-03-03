@@ -10,6 +10,8 @@ import {
 
     OpeningParenthesis,
     ClosingParenthesis,
+
+    End,
 } from './tokens';
 
 import {
@@ -41,7 +43,13 @@ export default class Parser {
     }
 
     parse () {
-        return this.parseConditionalExpression();
+        const expression = this.parseConditionalExpression();
+
+        if (this.check(End)) {
+            return expression;
+        }
+
+        throw new Error('Expected end');
     }
 
     parseConditionalExpression () {
