@@ -30,7 +30,7 @@ class Form extends React.Component {
                     required
                     name="input"
                     type="text"
-                    placeholder="Digite a fórmula. Por exemplo, (A ∧ B) → (C ∨ D)."
+                    placeholder="Digite a fórmula. Por exemplo (A ∧ B) → (C ∨ D)."
                     autoComplete="off"
                     error={this.props.error}
                     defaultValue={this.props.input}
