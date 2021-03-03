@@ -9,6 +9,7 @@ import { clearInput, setInput, setError } from '../../redux/actions';
 function Op ({ children }) {
     return <span className={FormStyle.operator}>{children}</span>;
 }
+
 class Form extends React.Component {
     onChange (event) {
         const input = event.target.value;
