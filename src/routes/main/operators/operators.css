@@ -1,4 +1,4 @@
-.operators {
+.container {
     display: flex;
     justify-content: space-between;
 
@@ -8,3 +8,17 @@
     font-size: 14px;
 }
 
+.group {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 992px) {
+    .group {
+        flex-direction: column;
+    }
+
+    .group > * {
+        margin-bottom: 8px;
+    }
+}
