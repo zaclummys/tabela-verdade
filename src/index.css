@@ -4,6 +4,7 @@
 
 html {
     background: #fefefe;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
