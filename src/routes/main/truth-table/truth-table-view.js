@@ -8,7 +8,7 @@ import {
     Body,
     Row,
     Data,
-} from '../table/table';
+} from 'src/components/table/table';
 
 export default function TruthTableView ({
     matrix,
