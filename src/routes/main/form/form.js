@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Input from 'src/components/input/input';
+import { setCursor, setInput } from 'src/redux/actions';
+
+import Operator from '../operator/operator';
 import FormStyle from './form.css';
-
-import Input from '../input/input';
-import { setCursor, setInput, setError } from '../../redux/actions';
-
-import Operator from './operator';
 
 class Form extends React.Component {
     onInputChange (event) {   
