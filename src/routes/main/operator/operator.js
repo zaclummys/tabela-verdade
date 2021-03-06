@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import { addCharacter } from '../../redux/actions';
+import { addCharacter } from 'src/redux/actions';
 
 import OperatorStyle from './operator.css';
 
