@@ -16,3 +16,7 @@ body {
 
     color: rgba(0, 0, 0, .87);
 }
+
+button:focus {
+    outline: none;
+}
