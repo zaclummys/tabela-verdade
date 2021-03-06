@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import createTruthTable from '../../lib';
-import { setError } from '../../redux/actions';
+import createTruthTable from 'src/lib';
+import { setError } from 'src/redux/actions';
 
 import TruthTableView from './truth-table-view';
 
