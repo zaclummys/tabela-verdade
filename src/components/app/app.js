@@ -1,5 +1,5 @@
 import React from 'react';
-import MainRoute from '../../routes/main/main';
+import MainRoute from 'src/routes/main/main';
 
 import AppStyle from './app.css';
 
