@@ -8,4 +8,11 @@
     color: #722ed1;
     font-weight: 500;
     text-decoration: none;
+    padding: 2px 4px;
+    border-radius: 2px;
+    transition: background-color 100ms ease-out;
+}
+
+.link:hover {
+    background-color: #722ed125;
 }
