@@ -3,7 +3,7 @@ import FooterStyle from './footer.css';
 
 function GithubLink () {
     return (
-        <a className={FooterStyle.link} href="https://github.com/zaclummys" target="_blank" rel="noreferrer">
+        <a className={FooterStyle.link} href="https://github.com/zaclummys" target="_blank" rel="noopener noreferrer">
             Isaac Luiz Vieira Ferreira
         </a>
     );
