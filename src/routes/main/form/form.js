@@ -46,7 +46,7 @@ class Form extends React.Component {
                     name="input"
                     type="text"
                     autoComplete="off"
-                    placeholder="Digite a fórmula. Por exemplo (A ∧ B) → (C ∨ D)."
+                    placeholder="Digite a expressão lógica. Por exemplo (A ∧ B) → (C ∨ D)."
                     error={this.props.error}
                     value={this.props.input}
                     onKeyUp={event => this.onInputKeyUp(event)}
