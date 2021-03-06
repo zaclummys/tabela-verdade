@@ -10,6 +10,7 @@
         ],
         "no-bitwise": "off",
         "no-console": "off",
+        "no-else-return": "off",
         "object-shorthand": "off",
         "arrow-parens": [
             "error",
