@@ -6,12 +6,13 @@ import OperatorStyle from './operator.css';
 
 class Operator extends React.Component {
     onClick () {
-        this.props.dispatch(addCharacter(this.props.operator))
+        this.props.dispatch(addCharacter(this.props.operator));
     }
 
     render () {
         return (
-            <button type="button"
+            <button
+                type="button"
                 className={OperatorStyle.operator}
                 onClick={() => this.onClick()}>
                 {this.props.operator}
