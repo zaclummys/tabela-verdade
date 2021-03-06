@@ -5,7 +5,7 @@ import OperatorsStyle from './operators.css';
 
 export default function Operators () {
     return (
-        <div className={OperatorsStyle.operations}>
+        <div className={OperatorsStyle.operators}>
             <span>
                 Negação:
                 <Operator operator="¬" />
