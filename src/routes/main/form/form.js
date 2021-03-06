@@ -8,7 +8,7 @@ import Operator from '../operator/operator';
 import FormStyle from './form.css';
 
 class Form extends React.Component {
-    onInputChange (event) {   
+    onInputChange (event) {
         this.updateInput(event.target.value);
     }
 
@@ -55,33 +55,38 @@ class Form extends React.Component {
 
                 <div className={FormStyle.description}>
                     <span className={FormStyle.operation}>
-                        Negação:        <Operator operator="¬" />
-                                        <Operator operator="~" />
-                                        <Operator operator="!" />
-                    </span>
-
-                    <span className={FormStyle.operation}>                  
-                        Conjunção:      <Operator operator="∧" />
-                                        <Operator operator={"&"} />
-                                        <Operator operator="*" />
+                        Negação:
+                        <Operator operator="¬" />
+                        <Operator operator="~" />
+                        <Operator operator="!" />
                     </span>
 
                     <span className={FormStyle.operation}>
-                        Disjunção:      <Operator operator="∨" />
-                                        <Operator operator="|" />
-                                        <Operator operator="+" />
+                        Conjunção:
+                        <Operator operator="∧" />
+                        <Operator operator="&" />
+                        <Operator operator="*" />
                     </span>
 
                     <span className={FormStyle.operation}>
-                        Implicação:     <Operator operator="→" />
-                                        <Operator operator="⇒" />
-                                        <Operator operator="->" />
+                        Disjunção:
+                        <Operator operator="∨" />
+                        <Operator operator="|" />
+                        <Operator operator="+" />
                     </span>
 
                     <span className={FormStyle.operation}>
-                        Equivalência:   <Operator operator="↔" />
-                                        <Operator operator="⇔" />
-                                        <Operator operator="<->" />
+                        Implicação:
+                        <Operator operator="→" />
+                        <Operator operator="⇒" />
+                        <Operator operator="->" />
+                    </span>
+
+                    <span className={FormStyle.operation}>
+                        Equivalência:
+                        <Operator operator="↔" />
+                        <Operator operator="⇔" />
+                        <Operator operator="<->" />
                     </span>
                 </div>
             </div>
