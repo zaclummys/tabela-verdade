@@ -1,5 +1,4 @@
 import React from 'react';
-import Value from './value';
 
 import {
     Table,
@@ -9,6 +8,8 @@ import {
     Row,
     Data,
 } from 'src/components/table/table';
+
+import Value from './value';
 
 export default function TruthTableView ({
     matrix,
