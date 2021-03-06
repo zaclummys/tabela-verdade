@@ -1,16 +1,12 @@
 import React from 'react';
-import AppStyle from './app.css';
+import MainRoute from '../../routes/main/main';
 
-import Header from '../header/header';
-import Main from '../main/main';
-import Footer from '../footer/footer';
+import AppStyle from './app.css';
 
 export default function App () {
     return (
         <div className={AppStyle.app}>
-            <Header />
-            <Main />
-            <Footer />
+            <MainRoute />
         </div>
     );
 }
