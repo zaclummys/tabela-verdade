@@ -25,19 +25,11 @@ function ReportBugLink () {
     );
 }
 
-function EmailLink () {
-    return (
-        <a className={FooterStyle.link} href="mailto:isaacluizvieiraferreira@id.uff.br">
-            isaacluizvieiraferreira@id.uff.br
-        </a>
-    );
-}
-
 export default function Footer () {
     return (
         <footer className={FooterStyle.footer}>
             <p>
-                Criado por <GithubLink /> | <RepositoryLink /> | <ReportBugLink /> | <EmailLink />
+                Criado por <GithubLink /> | <RepositoryLink /> | <ReportBugLink />
             </p>
         </footer>
     );
