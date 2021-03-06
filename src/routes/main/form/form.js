@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import Input from 'src/components/input/input';
 import { setCursor, setInput } from 'src/redux/actions';
+import Operators from 'src/routes/main/operators/operators';
 
-import Operator from '../operator/operator';
 import FormStyle from './form.css';
 
 class Form extends React.Component {
@@ -53,42 +53,7 @@ class Form extends React.Component {
                     onMouseUp={event => this.onInputMouseUp(event)}
                     onChange={event => this.onInputChange(event)} />
 
-                <div className={FormStyle.description}>
-                    <span className={FormStyle.operation}>
-                        Negação:
-                        <Operator operator="¬" />
-                        <Operator operator="~" />
-                        <Operator operator="!" />
-                    </span>
-
-                    <span className={FormStyle.operation}>
-                        Conjunção:
-                        <Operator operator="∧" />
-                        <Operator operator="&" />
-                        <Operator operator="*" />
-                    </span>
-
-                    <span className={FormStyle.operation}>
-                        Disjunção:
-                        <Operator operator="∨" />
-                        <Operator operator="|" />
-                        <Operator operator="+" />
-                    </span>
-
-                    <span className={FormStyle.operation}>
-                        Implicação:
-                        <Operator operator="→" />
-                        <Operator operator="⇒" />
-                        <Operator operator="->" />
-                    </span>
-
-                    <span className={FormStyle.operation}>
-                        Equivalência:
-                        <Operator operator="↔" />
-                        <Operator operator="⇔" />
-                        <Operator operator="<->" />
-                    </span>
-                </div>
+                <Operators />
             </div>
         );
     }
