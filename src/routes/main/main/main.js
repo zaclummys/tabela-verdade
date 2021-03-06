@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Form from '../form/form';
-import TruthTable from '../truth-table/truth-table';
+import Form from 'src/routes/main/form/form';
+import TruthTable from 'src/routes/main/truth-table/truth-table';
 
 export default function Main () {
     return (
