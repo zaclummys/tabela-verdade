@@ -5,7 +5,7 @@
         "start": "webpack serve --config ./webpack/webpack.dev.js",
         "build": "webpack build --config ./webpack/webpack.prod.js",
         "lint": "eslint ./src/**/*.js",
-        "test": "mocha ./tests/**/*.js",
+        "test": "mocha ./tests/**/*.js"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.13.8",
