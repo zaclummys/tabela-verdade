@@ -11,6 +11,7 @@
         "no-bitwise": "off",
         "no-console": "off",
         "no-else-return": "off",
+        "prefer-template": "off",
         "object-shorthand": "off",
         "arrow-parens": [
             "error",

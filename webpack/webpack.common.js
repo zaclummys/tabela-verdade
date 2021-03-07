@@ -1,9 +1,12 @@
 const path = require('path');
-
+const dotenv = require('dotenv');
+const webpack = require('webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+
+dotenv.config();
 
 module.exports = {
     entry: path.resolve(__dirname, '../src/index.js'),
@@ -54,6 +57,9 @@ module.exports = {
         }),
         new MiniCSSExtractPlugin({
             filename: '[name].[contenthash].css',
+        }),
+        new webpack.EnvironmentPlugin({
+            GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID
         }),
     ],
 };
