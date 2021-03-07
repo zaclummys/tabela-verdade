@@ -9,7 +9,6 @@ import 'normalize.css';
 import './index.css';
 
 import './register-service-worker';
-import './register-google-analytics';
 
 ReactDOM.render(
     <React.StrictMode>
