@@ -21,7 +21,7 @@ function HeaderDescription () {
 
 export default function Header () {
     return (
-        <header>
+        <header className={HeaderStyle.header}>
             <HeaderTitle />
             <HeaderDescription />
         </header>

@@ -1,0 +1,5 @@
+.container {
+    width: 100%;
+    display: table;
+    padding: 0 32px;
+}

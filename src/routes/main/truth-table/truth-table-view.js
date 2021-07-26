@@ -11,32 +11,36 @@ import {
 
 import Value from './value';
 
+import TruthTableStyle from './truth-table.css';
+
 export default function TruthTableView ({
     matrix,
     expressions,
 }) {
     return (
-        <Table>
-            <Head>
-                <Row>
-                    {expressions.map((expression, index) => (
-                        <Header key={index}>
-                            {expression.present()}
-                        </Header>
-                    ))}
-                </Row>
-            </Head>
-            <Body>
-                {matrix.map((row, rowIndex) => (
-                    <Row key={rowIndex}>
-                        {row.map((value, dataIndex) => (
-                            <Data key={dataIndex}>
-                                <Value value={value} />
-                            </Data>
+        <div className={TruthTableStyle.container}>
+            <Table>
+                <Head>
+                    <Row>
+                        {expressions.map((expression, index) => (
+                            <Header key={index}>
+                                {expression.present()}
+                            </Header>
                         ))}
                     </Row>
-                ))}
-            </Body>
-        </Table>
+                </Head>
+                <Body>
+                    {matrix.map((row, rowIndex) => (
+                        <Row key={rowIndex}>
+                            {row.map((value, dataIndex) => (
+                                <Data key={dataIndex}>
+                                    <Value value={value} />
+                                </Data>
+                            ))}
+                        </Row>
+                    ))}
+                </Body>
+            </Table>
+        </div>
     );
 }

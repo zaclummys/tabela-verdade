@@ -6,7 +6,7 @@
     
     border-collapse: collapse;
 
-    box-shadow: 0 0 2px 0px #2378045A;
+    box-shadow: 0 0 2px 0 #2378045A;
 }
 
 .header {
@@ -17,6 +17,8 @@
 
     font-weight: 700;
     text-align: center;
+
+    white-space: nowrap;
 }
 
 .body .row:nth-child(odd) {
