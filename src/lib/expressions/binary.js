@@ -6,8 +6,24 @@ export default class BinaryExpression {
         this.right = right;
     }
 
+    isLeftIdentifier () {
+        return this.left instanceof Identifier;
+    }
+
+    isRightIdentifier () {
+        return this.right instanceof Identifier;
+    }
+
+    isLeftSameConstructor () {
+        return this.constructor === this.left.constructor;
+    }
+
+    isRightSameConstructor () {
+        return this.constructor === this.right.constructor;
+    }
+
     presentLeft () {
-        if (this.left instanceof Identifier) {
+        if (this.isLeftIdentifier() || this.isLeftSameConstructor()) {
             return this.left.present();
         }
 
@@ -15,7 +31,7 @@ export default class BinaryExpression {
     }
 
     presentRight () {
-        if (this.right instanceof Identifier) {
+        if (this.isRightIdentifier() || this.isRightSameConstructor()) {
             return this.right.present();
         }
 

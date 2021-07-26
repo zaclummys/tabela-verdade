@@ -5,8 +5,16 @@ export default class UnaryExpression {
         this.inner = inner;
     }
 
+    isInnerIdentifier () {
+        return this.inner instanceof Identifier;
+    }
+
+    isInnerSameConstructor () {
+        return this.constructor === this.inner.constructor;
+    }
+
     presentInner () {
-        if (this.inner instanceof Identifier) {
+        if (this.isInnerIdentifier() || this.isInnerSameConstructor()) {
             return this.inner.present();
         }
 
