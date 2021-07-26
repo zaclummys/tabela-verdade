@@ -10,6 +10,7 @@ export default function HeaderDescription () {
             combinações possíveis. Além disso, você poderá acompanhar progressivamente o
             desenvolvimento da expressão lógica através das sub-expressões. Você poderá utilizar
             diversos caracteres para compor a expressão lógica.
+            {/* eslint-disable-next-line max-len */}
             A precedência dos operadores é a seguinte: Variável → Negação → Conjunção →  Disjunção → Implicação e Equivalência.
         </p>
     );
