@@ -6,7 +6,7 @@ export function Table (props) {
 }
 
 export function Head (props) {
-    return <thead className={TableStyle.head} {...props} />;
+    return <thead {...props} />;
 }
 
 export function Header (props) {
