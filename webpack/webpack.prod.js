@@ -1,8 +1,9 @@
 const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
 
-const TerserPlugin = require("terser-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
     mode: 'production',
@@ -17,7 +18,7 @@ module.exports = merge(common, {
     },
     plugins: [
         new WorkboxPlugin.GenerateSW({
-            exclude: [/\.html$/],            
+            exclude: [/\.html$/],
             skipWaiting: true,
             clientsClaim: true,
         }),
