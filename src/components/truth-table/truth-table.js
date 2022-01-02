@@ -1,12 +1,14 @@
 import React from 'react';
 
 import generate from '../../library';
-import {TruthTableRow} from "./truth-table-row";
-import {TruthTableHeader} from "./truth-table-header";
+import { TruthTableRow } from './truth-table-row';
+import { TruthTableHeader } from './truth-table-header';
 
 export default class TruthTable extends React.Component {
     constructor (props) {
         super(props);
+
+        this.schedulingTruthTableGeneration = null;
 
         this.state = {
             rows: [],
@@ -30,24 +32,30 @@ export default class TruthTable extends React.Component {
     }
 
     scheduleTruthTableGeneration () {
-        setTimeout(() => {
+        if (this.schedulingTruthTableGeneration) {
+            clearTimeout(this.schedulingTruthTableGeneration);
+        }
+
+        this.schedulingTruthTableGeneration = setTimeout(() => {
             this.generateTruthTable();
-        }, 0);
+        }, 16);
     }
 
     generateTruthTable () {
         const { expressionValue } = this.props;
 
         try {
-            if (expressionValue.length === 0) {
-                this.clearTruthTable();
-            } else {
+            const shouldGenerateTruthTable = expressionValue.length > 0;
+
+            if (shouldGenerateTruthTable) {
                 const {
                     rows,
                     expressions,
                 } = generate(expressionValue);
 
                 this.setTruthTable(rows, expressions);
+            } else {
+                this.clearTruthTable();
             }
 
             this.fireInvalidExpressionValue(false);
@@ -78,26 +86,39 @@ export default class TruthTable extends React.Component {
         }
     }
 
+    shouldNotRender () {
+        const {
+            rows,
+            expressions,
+        } = this.state;
+
+        return rows.length === 0 && expressions.length === 0;
+    }
+
     render () {
         const {
             rows,
             expressions,
         } = this.state;
 
-        if (rows.length === 0 && expressions.length === 0) {
+        if (this.shouldNotRender()) {
             return null;
         }
 
         return (
-            <table className="group mx-auto table-auto ring-2 ring-primary rounded-sm cursor-default transition-shadow hover:ring-primary-dark">
-                <thead className="bg-primary text-white border-b-2 border-primary group-hover:border-primary-dark">
+            <table
+                className="group mx-auto table-auto ring-2 ring-primary rounded-sm cursor-default transition-shadow hover:ring-primary-dark">
+                <thead
+                    className="bg-primary text-white border-b-2 border-primary group-hover:border-primary-dark">
                     <tr>
-                        <TruthTableHeaderList expressions={expressions} />
+                        <TruthTableHeaderList
+                            expressions={expressions} />
                     </tr>
                 </thead>
 
                 <tbody>
-                    <TruthTableRowList rows={rows} />
+                    <TruthTableRowList
+                        rows={rows} />
                 </tbody>
             </table>
         );
