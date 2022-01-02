@@ -1,5 +1,24 @@
 import { Identifier } from "../expressions";
 
+function isIdentifier (expression) {
+    return expression instanceof Identifier;
+}
+
+function identifiersComeFirst (expressionA, expressionB) {
+    const aIsIdentifier = isIdentifier(expressionA);
+    const bIsIdentifier = isIdentifier(expressionB);
+
+    if (aIsIdentifier && !bIsIdentifier) {
+        return -1;
+    }
+
+    if (!aIsIdentifier && bIsIdentifier) {
+        return 1;
+    }
+
+    return 0;
+}
+
 export default class ExpressionSet {
     constructor () {
         this.expressions = [];
@@ -17,20 +36,7 @@ export default class ExpressionSet {
         }
     }
 
-    toSortedArray () {
-        return this.expressions.slice().sort((expressionA, expressionB) => {
-            const aIsIdentifier = expressionA instanceof Identifier;
-            const bIsIdentifier = expressionB instanceof Identifier;
-
-            if (aIsIdentifier && !bIsIdentifier) {
-                return -1;
-            }
-
-            if (!aIsIdentifier && bIsIdentifier) {
-                return 1;
-            }
-
-            return 0;
-        });
+    cloneIntoSortedArray () {
+        return this.expressions.slice().sort(identifiersComeFirst);
     }
 }

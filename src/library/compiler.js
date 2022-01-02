@@ -23,7 +23,7 @@ export default class Compiler {
     }
 
     getExpressions () {
-        return this.expressions.toSortedArray();
+        return this.expressions.cloneIntoSortedArray();
     }
 
     storeVariable (variable) {
