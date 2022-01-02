@@ -8,9 +8,9 @@ const links = {
     repositoryReportProblem: 'https://github.com/zaclummys/tabela-verdade/issues/new',
 };
 
-export default function Footer() {
+export default function Footer () {
     return (
-        <footer className="my-8 text-center">
+        <footer className="my-8 text-center text-sm">
             <Link url={links.linkedIn}>Isaac Luiz Vieira Ferreira</Link>
             <span>|</span>
             <Link url={links.repository}>Repositório</Link>
