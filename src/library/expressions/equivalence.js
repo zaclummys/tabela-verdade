@@ -9,6 +9,14 @@ export default class EquivalenceExpression extends BinaryExpression {
         return false;
     }
 
+    isLeftLike () {
+        return this.left instanceof EquivalenceExpression;
+    }
+
+    isRightLike () {
+        return this.right instanceof EquivalenceExpression;
+    }
+
     present () {
         return `${this.presentLeft()} ↔ ${this.presentRight()}`;
     }

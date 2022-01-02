@@ -9,6 +9,14 @@ export default class ImplicationExpression extends BinaryExpression {
         return false;
     }
 
+    isLeftLike () {
+        return this.left instanceof ImplicationExpression;
+    }
+
+    isRightLike () {
+        return this.right instanceof ImplicationExpression;
+    }
+
     present () {
         return `${this.presentLeft()} → ${this.presentRight()}`;
     }

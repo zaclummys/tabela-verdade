@@ -9,6 +9,14 @@ export default class AndExpression extends BinaryExpression {
         return false;
     }
 
+    isLeftLike () {
+        return this.left instanceof AndExpression;
+    }
+
+    isRightLike () {
+        return this.right instanceof AndExpression;
+    }
+
     present () {
         return `${this.presentLeft()} ∧ ${this.presentRight()}`;
     }

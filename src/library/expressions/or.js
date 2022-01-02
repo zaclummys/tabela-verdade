@@ -9,6 +9,14 @@ export default class OrExpression extends BinaryExpression {
         return false;
     }
 
+    isLeftLike () {
+        return this.left instanceof OrExpression;
+    }
+
+    isRightLike () {
+        return this.right instanceof OrExpression;
+    }
+
     present () {
         return `${this.presentLeft()} ∨ ${this.presentRight()}`;
     }

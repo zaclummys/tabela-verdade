@@ -14,16 +14,16 @@ export default class BinaryExpression {
         return this.right instanceof Identifier;
     }
 
-    isLeftSameConstructor () {
-        return this.constructor === this.left.constructor;
+    shouldPresentLeftWithoutParenthesis () {
+        return this.isLeftIdentifier() || this.isLeftLike();
     }
 
-    isRightSameConstructor () {
-        return this.constructor === this.right.constructor;
+    shouldPresentRightWithoutParenthesis () {
+        return this.isRightIdentifier() || this.isRightLike();
     }
 
     presentLeft () {
-        if (this.isLeftIdentifier() || this.isLeftSameConstructor()) {
+        if (this.shouldPresentLeftWithoutParenthesis()) {
             return this.left.present();
         }
 
@@ -31,10 +31,22 @@ export default class BinaryExpression {
     }
 
     presentRight () {
-        if (this.isRightIdentifier() || this.isRightSameConstructor()) {
+        if (this.shouldPresentRightWithoutParenthesis()) {
             return this.right.present();
         }
 
         return `(${this.right.present()})`;
+    }
+
+    isLeftLike () {
+        throw new Error('isLeftLike must be implemented');
+    }
+
+    isRightLike () {
+        throw new Error('isRightLike must be implemented');
+    }
+
+    present () {
+        throw new Error('present must be implemented!');
     }
 }
