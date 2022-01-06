@@ -23,7 +23,7 @@ export default function Head () {
             <meta name="og:title" content={title} />
             <meta name="og:description" content={description} />
 
-            <meta name="google-site-verification" content={googleSiteVerificationKey}/>
+            <meta name="google-site-verification" content={googleSiteVerificationKey} />
         </Helmet>
     );
 }

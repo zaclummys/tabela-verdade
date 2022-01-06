@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Head from '../components/head/head';
-
 import Footer from '../components/footer/footer';
 import TruthTableContainer from '../components/truth-table-container/truth-table-container';
 
