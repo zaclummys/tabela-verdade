@@ -13,7 +13,10 @@ export default function Metadata () {
     } = metadata;
 
     return (
-        <Helmet>
+        <Helmet
+            htmlAttributes={{
+                lang: 'pt-BR'
+            }}>
             <title>{title}</title>
 
             <meta name="description" content={description} />
