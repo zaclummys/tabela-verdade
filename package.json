@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.1",
+    "cssnano": "^5.0.15",
     "gatsby": "^3.14.6",
     "gatsby-plugin-manifest": "^3.14.0",
     "gatsby-plugin-postcss": "^4.14.0",
