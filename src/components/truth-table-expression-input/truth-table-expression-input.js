@@ -11,13 +11,13 @@ function computeValidityClassNames (invalid) {
 export default function TruthTableExpressionInput ({
     value,
     invalid,
+    onRef,
     onChange,
-    onKeyUp,
-    onMouseUp,
 }) {
     return (
         <input
             required
+            autoFocus
             type="text"
             autoComplete="off"
             placeholder="Digite a expressão lógica. Por exemplo (A ∧ B) → (C ∨ D)."
@@ -27,9 +27,8 @@ export default function TruthTableExpressionInput ({
                 ${computeValidityClassNames(invalid)}
             `}
             value={value}
+            ref={onRef}
             onChange={onChange}
-            onKeyUp={onKeyUp}
-            onMouseUp={onMouseUp}
         />
     )
 }
