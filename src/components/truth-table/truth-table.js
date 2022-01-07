@@ -3,6 +3,7 @@ import React from 'react';
 import generate from '../../library';
 import { TruthTableRow } from './truth-table-row';
 import { TruthTableHeader } from './truth-table-header';
+import TruthTablePlaceholder from './truth-table-placeholder';
 
 export default class TruthTable extends React.Component {
     constructor (props) {
@@ -86,7 +87,7 @@ export default class TruthTable extends React.Component {
         }
     }
 
-    shouldNotRender () {
+    shouldRenderPlaceholder () {
         const {
             rows,
             expressions,
@@ -101,8 +102,10 @@ export default class TruthTable extends React.Component {
             expressions,
         } = this.state;
 
-        if (this.shouldNotRender()) {
-            return null;
+        if (this.shouldRenderPlaceholder()) {
+            return (
+                <TruthTablePlaceholder />
+            );
         }
 
         return (
