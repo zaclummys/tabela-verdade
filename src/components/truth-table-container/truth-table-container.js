@@ -36,13 +36,15 @@ export default class TruthTableContainer extends React.Component {
         } = this.state;
         
         return (
-            <div>
-                <TruthTableExpressionForm
-                    expressionValue={expressionValue}
-                    expressionValueIsInvalid={expressionValueIsInvalid}
-                    onExpressionValueChange={this.onExpressionValueChange} />
+            <div className="my-8">
+                <div className="my-6">
+                    <TruthTableExpressionForm
+                        expressionValue={expressionValue}
+                        expressionValueIsInvalid={expressionValueIsInvalid}
+                        onExpressionValueChange={this.onExpressionValueChange} />
+                </div>
 
-                <div className="table pr-8 w-full">
+                <div className="table pr-8 my-8 w-full">
                     <TruthTable
                         expressionValue={expressionValue}
                         onInvalidExpressionValue={this.onInvalidExpressionValue} />

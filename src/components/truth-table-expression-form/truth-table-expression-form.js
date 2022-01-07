@@ -148,7 +148,6 @@ export default class TruthTableExpressionForm extends React.Component {
 
         return (
             <form
-                className="my-6"
                 onSubmit={this.onFormSubmit}>
                 <TruthTableExpressionInput
                     value={expressionValue}
