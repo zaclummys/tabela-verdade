@@ -12,11 +12,6 @@ export default class OperatorItem extends React.Component {
         }
     }
 
-    onButtonMouseDown = (event) => {
-        // Prevent focus gain
-        event.preventDefault();
-    }
-
     onButtonClick = () => {
         this.fireAddOperator();
     }
@@ -36,7 +31,6 @@ export default class OperatorItem extends React.Component {
                         bg-primary active:bg-primary-dark
                         rounded-sm
                     "
-                    onMouseDown={this.onButtonMouseDown}
                     onClick={this.onButtonClick}>
                     {children}
                 </button>

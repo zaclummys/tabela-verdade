@@ -10,55 +10,22 @@ export default class TruthTableExpressionForm extends React.Component {
     constructor (...args) {
         super(...args);
 
-        this.expressionInputElement = null;
-
-        this.onDocumentKeyUp = () => {
-            this.syncExpressionCursor();
-        };
-
-        this.onDocumentMouseUp = () => {
-            this.syncExpressionCursor();
-        };
-
         this.state = {
-            expressionInputFocus: false,
             expressionCursorStart: 0,
             expressionCursorEnd: 0,
         };
     }
 
-    componentDidMount () {
-        this.subscribeDocumentEvents();
-    }
+    setExpressionCursorByInput (input) {
+        const {
+            selectionStart,
+            selectionEnd,
+        } = input;
 
-    componentWillUnmount () {
-        this.unsubscribeDocumentEvents();
-    }
-
-    subscribeDocumentEvents () {
-        document.addEventListener('keyup', this.onDocumentKeyUp);
-        document.addEventListener('mouseup', this.onDocumentMouseUp);
-    }
-
-    unsubscribeDocumentEvents () {
-        document.removeEventListener('keyup', this.onDocumentKeyUp);
-        document.removeEventListener('mouseup', this.onDocumentMouseUp);
-    }
-
-    syncExpressionCursor () {
-        const input = this.expressionInputElement;
-
-        if (input) {
-            const {
-                selectionStart,
-                selectionEnd,
-            } = input;
-
-            this.setExpressionCursor(
-                selectionStart,
-                selectionEnd,
-            );
-        }
+        this.setExpressionCursor(
+            selectionStart,
+            selectionEnd,
+        );
     }
 
     setExpressionCursor (
@@ -69,16 +36,6 @@ export default class TruthTableExpressionForm extends React.Component {
             expressionCursorStart,
             expressionCursorEnd,
         });
-    }
-
-    setExpressionInputFocus (expressionInputFocus) {
-        this.setState({
-            expressionInputFocus
-        })
-    }
-
-    setExpressionInputElement (element) {
-        this.expressionInputElement = element;
     }
 
     onAddOperator = (operator) => {
@@ -124,8 +81,16 @@ export default class TruthTableExpressionForm extends React.Component {
         this.fireExpressionValueChange(event.target.value);
     }
 
-    onExpressionInputRef = (element) => {
-        this.setExpressionInputElement(element);
+    onExpressionInputKeyUp = (event) => {
+        this.setExpressionCursorByInput(event.target);
+    }
+
+    onExpressionInputMouseUp = (event) => {
+        this.setExpressionCursorByInput(event.target);
+    }
+
+    onFormSubmit = (event) => {
+        event.preventDefault();
     }
 
     fireExpressionValueChange (value) {
@@ -134,10 +99,6 @@ export default class TruthTableExpressionForm extends React.Component {
         if (onExpressionValueChange) {
             onExpressionValueChange(value);
         }
-    }
-
-    onFormSubmit = (event) => {
-        event.preventDefault();
     }
 
     render () {
@@ -152,7 +113,6 @@ export default class TruthTableExpressionForm extends React.Component {
                 <TruthTableExpressionInput
                     value={expressionValue}
                     invalid={expressionValueIsInvalid}
-                    onRef={this.onExpressionInputRef}
                     onChange={this.onExpressionInputChange}
                     onKeyUp={this.onExpressionInputKeyUp}
                     onMouseUp={this.onExpressionInputMouseUp} />
