@@ -10,11 +10,9 @@ const links = {
 
 export default function Footer () {
     return (
-        <footer className="my-8 text-center text-sm">
+        <footer className="my-8 text-center text-sm flex justify-center flex-col space-y-1 sm:flex-row sm:space-y-0 sm:space-x-3">
             <Link url={links.linkedIn}>Isaac Luiz Vieira Ferreira</Link>
-            <span>|</span>
             <Link url={links.repository}>Repositório</Link>
-            <span>|</span>
             <Link url={links.repositoryReportProblem}>Relatar um problema</Link>
         </footer>
     );
