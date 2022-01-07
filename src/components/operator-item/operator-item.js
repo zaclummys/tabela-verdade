@@ -29,7 +29,7 @@ export default class OperatorItem extends React.Component {
                         transition duration-75 ease-out
                         ring-opacity-40 ring-primary hover:ring-2
                         bg-primary active:bg-primary-dark
-                        rounded-sm
+                        rounded-sm shadow
                     "
                     onClick={this.onButtonClick}>
                     {children}

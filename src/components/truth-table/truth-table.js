@@ -110,7 +110,7 @@ export default class TruthTable extends React.Component {
 
         return (
             <table
-                className="group mx-auto table-auto ring-2 ring-primary rounded-sm cursor-default transition-shadow hover:ring-primary-dark">
+                className="group mx-auto table-auto ring-2 ring-primary rounded-sm cursor-default transition-shadow hover:ring-primary-dark shadow-md">
                 <thead
                     className="bg-primary text-white border-b-2 border-primary group-hover:border-primary-dark">
                     <tr>
