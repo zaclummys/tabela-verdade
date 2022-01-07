@@ -1,16 +1,16 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import config from '../../../config';
+import { metadata } from '../../../config';
 
-export default function Head () {
+export default function Metadata () {
     const {
         title,
         robots,
         keywords,
         description,
         googleSiteVerificationKey,
-    } = config.metadata;
+    } = metadata;
 
     return (
         <Helmet>
