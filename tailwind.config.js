@@ -8,9 +8,9 @@ module.exports = {
                 sans: ['Roboto', 'Helvetica', 'Arial', 'sans-serif']
             },
             colors: {
-                'primary': '#52c41a',
-                'primary-dark': '#389e0d',
-                'secondary': '#722ed1',
+                'primary': '#45a616',
+                'primary-dark': '#378512',
+                'secondary': '#7616a6',
             },
         },
     },
