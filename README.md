@@ -1,6 +1,6 @@
 # Tabela-verdade
 
-Este é um gerador de tabela-verdade criado com [React](https://pt-br.reactjs.org/) e [Gatsby](https://www.gatsbyjs.com/). [Clique aqui](https://tabelaverdade.gatsbyjs.io/) para experimentar a última versão da aplicação.
+Este é um gerador de tabela-verdade criado com [React](https://pt-br.reactjs.org/) e [Gatsby](https://www.gatsbyjs.com/). Para experimentar a última versão da aplicação, [clique aqui](https://tabelaverdade.gatsbyjs.io/).
 
 ## Objetivo
 
