@@ -1,7 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { metadata } from '../../../config';
+import {
+    metadata,
+    googleSiteVerificationKey,
+} from '../../../config';
 
 export default function Metadata () {
     const {
@@ -9,7 +12,6 @@ export default function Metadata () {
         robots,
         keywords,
         description,
-        googleSiteVerificationKey,
     } = metadata;
 
     return (

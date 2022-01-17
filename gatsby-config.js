@@ -1,4 +1,8 @@
-const { name, metadata } = require('./config');
+const {
+    name,
+    metadata,
+    googleAnalyticsTrackingId,
+} = require('./config');
 
 module.exports = {
     plugins: [
@@ -17,6 +21,17 @@ module.exports = {
                 theme_color: '#ffffff',
                 background_color: '#52c41a',
             }
-        }
+        },
+        {
+            resolve: `gatsby-plugin-google-gtag`,
+            options: {
+                trackingIds: [
+                    googleAnalyticsTrackingId,
+                ],
+                pluginConfig: {
+                    head: true,
+                },
+            },
+        },
     ],
 };
