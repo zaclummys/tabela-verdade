@@ -4,6 +4,31 @@ import Parser from './parser';
 import Compiler from './compiler';
 import Table from './table';
 
+function normalize (rows, expressions) {
+    const normalizedRows = [];
+
+    for (const values of rows) {
+        const normalizedValues = [];
+
+        for (const value of values) {
+            normalizedValues.push(value);
+        }
+
+        normalizedRows.push(normalizedValues);
+    }
+
+    const normalizedExpressions = [];
+
+    for (const expression of expressions) {
+        normalizedExpressions.push(expression.present());
+    }
+
+    return {
+        rows: normalizedRows,
+        expressions: normalizedExpressions,
+    };
+}
+
 export default function generate (input) {
     const source = new Source(input);
     const lexer = new Lexer(source);
@@ -20,5 +45,7 @@ export default function generate (input) {
 
     const table = new Table(variables, expressions);
 
-    return table.generate();
+    const rows = table.generate();
+
+    return normalize(rows, expressions);
 }
