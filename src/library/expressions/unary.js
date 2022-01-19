@@ -1,23 +1,29 @@
-import Identifier from './identifier';
+import Expression from './expression';
 
-export default class UnaryExpression {
+export default class UnaryExpression extends Expression {
     constructor (inner) {
+        super();
+
         this.inner = inner;
     }
 
-    isInnerIdentifier () {
-        return this.inner instanceof Identifier;
+    shouldPresentWithoutParenthesis () {
+        return false;
     }
 
-    isInnerSameConstructor () {
-        return this.constructor === this.inner.constructor;
+    shouldPresentInnerWithoutParenthesis () {
+        return this.inner.isLike(this) || this.inner.shouldPresentWithoutParenthesis();
     }
 
     presentInner () {
-        if (this.isInnerIdentifier() || this.isInnerSameConstructor()) {
-            return this.inner.present();
+        if (this.shouldPresentInnerWithoutParenthesis()) {
+            return `${this.inner.present()}`;
+        } else {
+            return `(${this.inner.present()})`;
         }
+    }
 
-        return `(${this.inner.present()})`;
+    isEqual (other) {
+        return this.isLike(other) && this.inner.isEqual(other.inner);
     }
 }

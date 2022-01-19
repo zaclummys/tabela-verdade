@@ -1,14 +1,22 @@
-export default class Identifier {
+import Expression from './expression';
+
+export default class Identifier extends Expression {
     constructor (name) {
+        super();
+
         this.name = name;
     }
 
-    equals (other) {
-        if (other instanceof Identifier) {
-            return this.name === other.name;
-        }
+    isLike (other) {
+        return other instanceof Identifier;
+    }
 
-        return false;
+    isEqual (other) {
+        return this.isLike(other) && this.name === other.name;
+    }
+
+    shouldPresentWithoutParenthesis () {
+        return true;
     }
 
     present () {

@@ -1,52 +1,43 @@
-import Identifier from './identifier';
+import Expression from './expression';
 
-export default class BinaryExpression {
+export default class BinaryExpression extends Expression {
     constructor (left, right) {
+        super();
+
         this.left = left;
         this.right = right;
     }
 
-    isLeftIdentifier () {
-        return this.left instanceof Identifier;
-    }
-
-    isRightIdentifier () {
-        return this.right instanceof Identifier;
+    shouldPresentWithoutParenthesis () {
+        return false;
     }
 
     shouldPresentLeftWithoutParenthesis () {
-        return this.isLeftIdentifier() || this.isLeftLike();
+        return this.left.isLike(this) || this.left.shouldPresentWithoutParenthesis();
     }
 
     shouldPresentRightWithoutParenthesis () {
-        return this.isRightIdentifier() || this.isRightLike();
+        return this.right.isLike(this) || this.right.shouldPresentWithoutParenthesis();
     }
 
     presentLeft () {
         if (this.shouldPresentLeftWithoutParenthesis()) {
-            return this.left.present();
+            return `${this.left.present()}`;
+        } else {
+            return `(${this.left.present()})`;
         }
-
-        return `(${this.left.present()})`;
     }
 
     presentRight () {
         if (this.shouldPresentRightWithoutParenthesis()) {
-            return this.right.present();
+            return `${this.right.present()}`;
+        } else {
+            return `(${this.right.present()})`;
         }
-
-        return `(${this.right.present()})`;
     }
 
-    isLeftLike () {
-        throw new Error('isLeftLike must be implemented');
-    }
-
-    isRightLike () {
-        throw new Error('isRightLike must be implemented');
-    }
-
-    present () {
-        throw new Error('present must be implemented!');
+    isEqual (other) {
+        return this.isLike(other) && this.left.isEqual(other.left) && this.right.isEqual(other.right);
     }
 }
+
