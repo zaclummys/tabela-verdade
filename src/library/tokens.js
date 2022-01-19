@@ -1,6 +1,10 @@
 export class Name {
-    constructor (name) {
-        this.name = name;
+    constructor (string) {
+        this.string = string;
+    }
+
+    getString () {
+        return this.string;
     }
 }
 
