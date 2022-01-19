@@ -109,13 +109,13 @@ export default class Parser {
     }
 
     parseParenthesisExpression () {
-        if (this.match(OpeningParenthesis) == null) {
+        if (!this.match(OpeningParenthesis)) {
             throw new Error('Expected opening parenthesis');
         }
 
         const expression = this.parseConditionalExpression();
 
-        if (this.match(ClosingParenthesis) == null) {
+        if (!this.match(ClosingParenthesis)) {
             throw new Error('Expected closing parenthesis');
         }
 
@@ -123,12 +123,12 @@ export default class Parser {
     }
 
     parseIdentifier () {
-        const token = this.tokens.next();
+        const name = this.match(Name);
 
-        if (token instanceof Name) {
-            return new Identifier(token.name);
+        if (!name) {
+            throw new Error('Expected name');
         }
 
-        throw new Error('Expected identifier');
+        return new Identifier(name.getString());
     }
 }
