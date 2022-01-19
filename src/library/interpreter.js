@@ -14,13 +14,9 @@ export default class Interpreter {
         this.variables = variables;
     }
 
-    getVariableValue (variable) {
-        return this.variables.get(variable);
-    }
-
     evaluate (expression) {
         if (expression instanceof Identifier) {
-           return this.getVariableValue(expression.name);
+            return this.variables.get(expression.name);
         }
 
         if (expression instanceof NotExpression) {
@@ -55,6 +51,12 @@ export default class Interpreter {
             return (left && right) || (!left && !right);
         }
 
-        throw new Error('Unexpected expression');
+        throw new Error('Unable to evaluate this expression');
+    }
+
+    *evaluateMany (expressions) {
+        for (const expression of expressions) {
+            yield this.evaluate(expression);
+        }
     }
 }
