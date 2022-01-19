@@ -1,7 +1,5 @@
 import Interpreter from './interpreter';
-
-import TableResult from './table/result';
-import VariablePermutationMaps from './variable-permutation-maps';
+import VariablePermutationMapGenerator from './table/variable-permutation-map-generator';
 
 export default class Table {
     constructor (variables, expressions) {
@@ -9,32 +7,16 @@ export default class Table {
         this.expressions = expressions;
     }
 
-    generate () {
-        return new TableResult(
-            this.generateRows(),
-            this.expressions,
-        );
-    }
+    *generate () {
+        const variables = this.variables;
+        const expressions = this.expressions;
 
-    generateRows () {
-        const permutations = new VariablePermutationMaps(
-            this.variables
-        );
+        const generator = new VariablePermutationMapGenerator(variables);
 
-        const rows = [];
+        for (const map of generator.generate()) {
+            const interpreter = new Interpreter(map);
 
-        for (const permutation of permutations.generate()) {
-            const interpreter = new Interpreter(permutation);
-
-            const values = [];
-
-            for (const expression of this.expressions) {
-                values.push(interpreter.evaluate(expression));
-            }
-
-            rows.push(values);
+            yield interpreter.evaluateMany(expressions);
         }
-
-        return rows;
     }
 }
