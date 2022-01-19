@@ -29,7 +29,7 @@ module.exports = {
                     googleAnalyticsTrackingId,
                 ],
                 pluginConfig: {
-                    head: true,
+                    head: false,
                 },
             },
         },
