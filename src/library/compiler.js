@@ -12,6 +12,8 @@ import {
 import VariableSet from './compiler/variable-set';
 import ExpressionSet from './compiler/expression-set';
 
+import { compareExpressionPrecedences } from './compiler/precedence';
+
 export default class Compiler {
     constructor () {
         this.variables = new VariableSet();
@@ -23,7 +25,9 @@ export default class Compiler {
     }
 
     getExpressions () {
-        return this.expressions.cloneIntoSortedArray();
+        return this.expressions.asArray()
+            .slice()
+            .sort(compareExpressionPrecedences);
     }
 
     storeVariable (variable) {
