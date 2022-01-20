@@ -14,9 +14,9 @@ export class And {}
 
 export class Or {}
 
-export class Implication {}
+export class Conditional {}
 
-export class Equivalence {}
+export class Biconditional {}
 
 export class OpeningParenthesis {}
 

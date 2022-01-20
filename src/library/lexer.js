@@ -29,8 +29,8 @@ import {
     And,
     Or,
 
-    Implication,
-    Equivalence,
+    Conditional,
+    Biconditional,
 
     OpeningParenthesis,
     ClosingParenthesis,
@@ -137,13 +137,13 @@ export default class Lexer {
             case RIGHTWARDS_DOUBLE_ARROW:
                 this.source.bump();
 
-                return new Implication();
+                return new Conditional();
 
             case LEFT_RIGHT_ARROW:
             case LEFT_RIGHT_DOUBLE_ARROW:
                 this.source.bump();
 
-                return new Equivalence();
+                return new Biconditional();
 
             case OPENING_PARENTHESIS:
                 this.source.bump();
@@ -170,7 +170,7 @@ export default class Lexer {
                             if (this.source.peek() === '>') {
                                 this.source.bump();
 
-                                return new Equivalence();
+                                return new Biconditional();
                             }
                         }
                     }
@@ -180,7 +180,7 @@ export default class Lexer {
                         if (this.source.peek() === '>') {
                             this.source.bump();
 
-                            return new Implication();
+                            return new Conditional();
                         }
                     }
 

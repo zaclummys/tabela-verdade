@@ -13,8 +13,8 @@ export default function Header () {
                 Além disso, você poderá acompanhar progressivamente o desenvolvimento da expressão lógica através das
                 sub-expressões.
                 Você poderá utilizar diversos caracteres para compor a expressão lógica.
-                A precedência das expressões é a seguinte: Variável → Negação → Conjunção → Disjunção → Implicação e
-                Equivalência.
+                A precedência das expressões é a seguinte: Variável → Negação → Conjunção → Disjunção → Condicional →
+                Bicondicional.
             </p>
         </header>
     );

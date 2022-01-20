@@ -178,7 +178,7 @@ export default class TruthTableExpressionForm extends React.Component {
                         </OperatorList>
                     </OperatorGroupItem>
 
-                    <OperatorGroupItem name="Implicação">
+                    <OperatorGroupItem name="Condicional">
                         <OperatorList>
                             <OperatorItem
                                 operator="→"
@@ -198,7 +198,7 @@ export default class TruthTableExpressionForm extends React.Component {
                         </OperatorList>
                     </OperatorGroupItem>
 
-                    <OperatorGroupItem name="Equivalência">
+                    <OperatorGroupItem name="Bicondicional">
                         <OperatorList>
                             <OperatorItem
                                 operator="↔"

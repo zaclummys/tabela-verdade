@@ -5,8 +5,8 @@ import {
     And,
     Or,
 
-    Implication,
-    Equivalence,
+    Conditional,
+    Biconditional,
 
     OpeningParenthesis,
     ClosingParenthesis,
@@ -55,7 +55,7 @@ export default class Parser {
     parseBiconditionalExpression () {
         const expression = this.parseConditionalExpression();
 
-        if (this.match(Equivalence)) {
+        if (this.match(Biconditional)) {
             return new BiconditionalExpression(expression, this.parseBiconditionalExpression());
         }
 
@@ -65,7 +65,7 @@ export default class Parser {
     parseConditionalExpression () {
         const expression = this.parseOrExpression();
 
-        if (this.match(Implication)) {
+        if (this.match(Conditional)) {
             return new ConditionalExpression(expression, this.parseConditionalExpression());
         }
 
