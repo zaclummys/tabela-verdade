@@ -21,8 +21,8 @@ import {
     AndExpression,
     OrExpression,
 
-    ImplicationExpression,
-    EquivalenceExpression,
+    ConditionalExpression,
+    BiconditionalExpression,
 } from './expressions';
 
 export default class Parser {
@@ -43,7 +43,7 @@ export default class Parser {
     }
 
     parse () {
-        const expression = this.parseConditionalExpression();
+        const expression = this.parseBiconditionalExpression();
 
         if (this.check(End)) {
             return expression;
@@ -52,15 +52,21 @@ export default class Parser {
         throw new Error('Expected end');
     }
 
+    parseBiconditionalExpression () {
+        const expression = this.parseConditionalExpression();
+
+        if (this.match(Equivalence)) {
+            return new BiconditionalExpression(expression, this.parseBiconditionalExpression());
+        }
+
+        return expression;
+    }
+
     parseConditionalExpression () {
         const expression = this.parseOrExpression();
 
         if (this.match(Implication)) {
-            return new ImplicationExpression(expression, this.parseConditionalExpression());
-        }
-
-        if (this.match(Equivalence)) {
-            return new EquivalenceExpression(expression, this.parseConditionalExpression());
+            return new ConditionalExpression(expression, this.parseConditionalExpression());
         }
 
         return expression;
