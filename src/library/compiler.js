@@ -5,8 +5,8 @@ import {
     OrExpression,
     AndExpression,
 
-    ImplicationExpression,
-    EquivalenceExpression,
+    ConditionalExpression,
+    BiconditionalExpression,
 } from './expressions';
 
 import VariableSet from './compiler/variable-set';
@@ -53,11 +53,11 @@ export default class Compiler {
             this.compile(expression.left);
             this.compile(expression.right);
         }
-        else if (expression instanceof ImplicationExpression) {
+        else if (expression instanceof ConditionalExpression) {
             this.compile(expression.left);
             this.compile(expression.right);
         }
-        else if (expression instanceof EquivalenceExpression) {
+        else if (expression instanceof BiconditionalExpression) {
             this.compile(expression.left);
             this.compile(expression.right);
         }

@@ -5,8 +5,8 @@ import {
     OrExpression,
     AndExpression,
 
-    ImplicationExpression,
-    EquivalenceExpression,
+    ConditionalExpression,
+    BiconditionalExpression,
 } from './expressions';
 
 export default class Interpreter {
@@ -37,14 +37,14 @@ export default class Interpreter {
             return left || right;
         }
 
-        if (expression instanceof ImplicationExpression) {
+        if (expression instanceof ConditionalExpression) {
             const left = this.evaluate(expression.left);
             const right = this.evaluate(expression.right);
 
             return !left || right;
         }
 
-        if (expression instanceof EquivalenceExpression) {
+        if (expression instanceof BiconditionalExpression) {
             const left = this.evaluate(expression.left);
             const right = this.evaluate(expression.right);
 

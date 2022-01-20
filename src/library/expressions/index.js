@@ -4,8 +4,8 @@ import NotExpression from './not';
 import OrExpression from './or';
 import AndExpression from './and';
 
-import ImplicationExpression from './implication';
-import EquivalenceExpression from './equivalence';
+import ConditionalExpression from './conditional';
+import BiconditionalExpression from './biconditional';
 
 export {
     Identifier,
@@ -14,6 +14,6 @@ export {
     OrExpression,
     AndExpression,
 
-    ImplicationExpression,
-    EquivalenceExpression,
+    ConditionalExpression,
+    BiconditionalExpression,
 };
