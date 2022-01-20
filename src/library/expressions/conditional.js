@@ -1,8 +1,8 @@
 import BinaryExpression from './binary';
 
-export default class ImplicationExpression extends BinaryExpression {
+export default class ConditionalExpression extends BinaryExpression {
     isLike (other) {
-        return other instanceof ImplicationExpression;
+        return other instanceof ConditionalExpression;
     }
 
     present () {
