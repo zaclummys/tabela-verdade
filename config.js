@@ -1,6 +1,7 @@
 const {
     GATSBY_GOOGLE_SITE_VERIFICATION_KEY,
     GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,
+    GATSBY_GOOGLE_ADS_TRACKING_ID,
 } = process.env;
 
 module.exports = {
@@ -13,4 +14,5 @@ module.exports = {
     },
     googleSiteVerificationKey: GATSBY_GOOGLE_SITE_VERIFICATION_KEY,
     googleAnalyticsTrackingId: GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,
+    googleAdsTrackingId: GATSBY_GOOGLE_ADS_TRACKING_ID,
 };

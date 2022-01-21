@@ -1,6 +1,7 @@
 const {
     name,
     metadata,
+    googleAdsTrackingId,
     googleAnalyticsTrackingId,
 } = require('./config');
 
@@ -26,6 +27,7 @@ module.exports = {
             resolve: `gatsby-plugin-google-gtag`,
             options: {
                 trackingIds: [
+                    googleAdsTrackingId,
                     googleAnalyticsTrackingId,
                 ],
                 pluginConfig: {
