@@ -1,8 +1,12 @@
 const {
     GATSBY_GOOGLE_SITE_VERIFICATION_KEY,
     GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,
-    GATSBY_GOOGLE_ADS_TRACKING_ID,
 } = process.env;
+
+console.info({
+    GATSBY_GOOGLE_SITE_VERIFICATION_KEY,
+    GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,
+});
 
 module.exports = {
     name: 'Tabela-verdade',
@@ -14,5 +18,4 @@ module.exports = {
     },
     googleSiteVerificationKey: GATSBY_GOOGLE_SITE_VERIFICATION_KEY,
     googleAnalyticsTrackingId: GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,
-    googleAdsTrackingId: GATSBY_GOOGLE_ADS_TRACKING_ID,
 };
