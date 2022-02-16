@@ -8,7 +8,7 @@ export default function Header () {
             </h1>
 
             <p className="my-6">
-                Esta é uma ferramenta que automatiza a criação da tabela-verdade de expressões lógicas.
+                Esta é uma ferramenta que facilita a geração da tabela-verdade de expressões lógicas.
                 Ao digitar, a tabela atualizará automaticamente e exibirá todas as combinações possíveis.
                 Além disso, você poderá acompanhar progressivamente o desenvolvimento da expressão lógica através das
                 sub-expressões.
