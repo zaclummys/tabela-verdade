@@ -11,8 +11,8 @@ function computeValidityClassNames (invalid) {
 export default function TruthTableExpressionInput ({
     value,
     invalid,
-    onChange,
     onKeyUp,
+    onChange,
     onMouseUp,
 }) {
     return (
@@ -28,8 +28,8 @@ export default function TruthTableExpressionInput ({
                 ${computeValidityClassNames(invalid)}
             `}
             value={value}
-            onChange={onChange}
             onKeyUp={onKeyUp}
+            onChange={onChange}
             onMouseUp={onMouseUp}
         />
     )

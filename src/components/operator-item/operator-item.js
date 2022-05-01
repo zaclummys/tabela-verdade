@@ -1,23 +1,11 @@
 import React from 'react';
 
 export default class OperatorItem extends React.Component {
-    fireAddOperator () {
-        const {
-            operator,
-            onAddOperator,
-        } = this.props;
-
-        if (onAddOperator) {
-            onAddOperator(operator);
-        }
-    }
-
-    onButtonClick = () => {
-        this.fireAddOperator();
-    }
-
     render () {
-        const { children } = this.props;
+        const {
+            children,
+            onButtonClick,
+        } = this.props;
 
         return (
             <li className="inline">
@@ -31,7 +19,7 @@ export default class OperatorItem extends React.Component {
                         bg-primary active:bg-primary-dark
                         rounded-sm shadow
                     "
-                    onClick={this.onButtonClick}>
+                    onClick={onButtonClick}>
                     {children}
                 </button>
             </li>
