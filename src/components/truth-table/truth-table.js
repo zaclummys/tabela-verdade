@@ -1,8 +1,8 @@
 import React from 'react';
 
 import generate from '../../library';
-import { TruthTableRow } from './truth-table-row';
-import { TruthTableHeader } from './truth-table-header';
+import TruthTableRow from './truth-table-row';
+import TruthTableHeader from './truth-table-header';
 import TruthTablePlaceholder from './truth-table-placeholder';
 
 export default class TruthTable extends React.Component {
@@ -32,6 +32,10 @@ export default class TruthTable extends React.Component {
         }
     }
 
+    isExpressionValueEmpty () {
+        return this.props.expressionValue.length === 0;
+    }
+
     scheduleTruthTableGeneration () {
         if (this.schedulingTruthTableGeneration) {
             clearTimeout(this.schedulingTruthTableGeneration);
@@ -46,17 +50,15 @@ export default class TruthTable extends React.Component {
         const { expressionValue } = this.props;
 
         try {
-            const shouldGenerateTruthTable = expressionValue.length > 0;
-
-            if (shouldGenerateTruthTable) {
+            if (this.isExpressionValueEmpty()) {
+                this.clearTruthTable();
+            } else {
                 const {
                     rows,
                     expressions,
                 } = generate(expressionValue);
 
                 this.setTruthTable(rows, expressions);
-            } else {
-                this.clearTruthTable();
             }
 
             this.fireInvalidExpressionValue(false);
@@ -87,13 +89,16 @@ export default class TruthTable extends React.Component {
         }
     }
 
-    shouldRenderPlaceholder () {
-        const {
-            rows,
-            expressions,
-        } = this.state;
+    isRowsEmpty () {
+        return this.state.rows.length === 0;
+    }
 
-        return rows.length === 0 && expressions.length === 0;
+    isExpressionsEmpty () {
+        return this.state.expressions.length === 0;
+    }
+
+    shouldRenderPlaceholder () {
+        return this.isRowsEmpty() && this.isExpressionsEmpty();
     }
 
     render () {
