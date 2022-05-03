@@ -20,8 +20,8 @@ module.exports = {
     name: 'Tabela-verdade',
     metadata: {
         title: 'Tabela-verdade | Gerar tabelas-verdade automaticamente',
-        description: 'Ferramenta para automatizar a criação da tabela-verdade de expressões lógicas',
-        keywords: 'gerador, tabela, verdade, expressão',
+        description: 'Ferramenta para automatizar a criação da tabela-verdade de expressões lógicas on-line.',
+        keywords: 'gerador, tabela, verdade, expressão, on-line',
         robots: 'index, follow',
     },
     sentryDsnUrl: GATSBY_SENTRY_DSN_URL,
