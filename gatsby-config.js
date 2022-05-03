@@ -1,6 +1,7 @@
 const {
     name,
     metadata,
+    sentryDsnUrl,
     googleAnalyticsTrackingId,
 } = require('./config');
 
@@ -37,7 +38,7 @@ module.exports = {
             resolve: "@sentry/gatsby",
             options: {
                 sampleRate: 1.0,
-                dsn: "https://8d76fd9ab6a14de9b080ae487d55cb9d@o1121364.ingest.sentry.io/6157817",
+                dsn: sentryDsnUrl,
             },
         },
     ],
