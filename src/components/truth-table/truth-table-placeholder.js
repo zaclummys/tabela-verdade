@@ -1,9 +1,14 @@
 import React from 'react';
+import LocaleContext from '../../contexts/locale';
 
 export default function TruthTablePlaceholder () {
     return (
-        <p className="text-center text-sm text-gray-500">
-            Digite uma expressão lógica no campo acima para gerar a tabela-verdade.
-        </p>
+        <LocaleContext.Consumer>
+            {locale => (
+                <p className="text-center text-sm text-gray-500">
+                    {locale.truthTableHint}
+                </p>
+            )}
+        </LocaleContext.Consumer>
     );
 }

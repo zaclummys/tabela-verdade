@@ -1,12 +1,12 @@
 import React from 'react';
 import Container from '../components/container/container';
 
-import ptBR from '../locales/pt-br';
+import enUS from '../locales/en-us';
 import LocaleContext from '../contexts/locale';
 
-export default function IndexPtBR () {
+export default function IndexEnUS () {
     return (
-        <LocaleContext.Provider value={ptBR}>
+        <LocaleContext.Provider value={enUS}>
             <Container />
         </LocaleContext.Provider>
     );

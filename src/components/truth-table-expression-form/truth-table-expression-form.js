@@ -1,19 +1,52 @@
 import React from 'react';
 
-import OperatorList from '../operator-list/operator-list';
-import OperatorItem from '../operator-item/operator-item';
-import OperatorGroupList from '../operator-group-list/operator-group-list';
-import OperatorGroupItem from '../operator-group-item/operator-group-item';
-import TruthTableExpressionInput from "../truth-table-expression-input/truth-table-expression-input";
+import TruthTableExpressionFormView from './truth-table-expression-form-view';
+
+import {
+    isHtmlInputElement,
+    getCurrentFocusedElement,
+} from '../../utils/dom';
 
 export default class TruthTableExpressionForm extends React.Component {
     constructor (...args) {
         super(...args);
 
+        this.windowMouseUpHandler = () => {
+            this.setExpressionCursorByFocusedElement();
+        };
+
         this.state = {
             expressionCursorStart: 0,
             expressionCursorEnd: 0,
         };
+    }
+
+    componentDidMount () {
+        this.addWindowMouseUpHandler();
+    }
+
+    componentWillUnmount() {
+        this.removeWindowMouseUpHandler();
+    }
+
+    getExpressionValueStartOffset () {
+        return 0;
+    }
+
+    getExpressionValueEndOffset () {
+        return this.props.expressionValue.length;
+    }
+
+    setExpressionValue (expressionValue) {
+        this.fireExpressionValueChange(expressionValue);
+    }
+
+    setExpressionCursorByFocusedElement () {
+        const element = getCurrentFocusedElement();
+
+        if (isHtmlInputElement(element)) {
+            this.setExpressionCursorByInput(element);
+        }
     }
 
     setExpressionCursorByInput (input) {
@@ -38,28 +71,90 @@ export default class TruthTableExpressionForm extends React.Component {
         });
     }
 
-    onAddOperator = (operator) => {
+    setExpressionCursorWith (f) {
+        this.setState(({expressionCursorStart, expressionCursorEnd}) => f({
+            expressionCursorStart,
+            expressionCursorEnd,
+        }));
+    }
+
+    addWindowMouseUpHandler () {
+        window.addEventListener('pointerup', this.windowMouseUpHandler);
+    }
+
+    removeWindowMouseUpHandler () {
+        window.removeEventListener('pointerup', this.windowMouseUpHandler);
+    }
+
+    addRegularOperator (operator) {
         const {
             expressionCursorStart,
             expressionCursorEnd,
         } = this.state;
 
-        const expressionValueStart = 0;
-        const expressionValueEnd = this.getExpressionValueLength();
-
-        const builtExpressionValue = (
-            this.substringExpressionValue(expressionValueStart, expressionCursorStart)
-            + operator +
-            this.substringExpressionValue(expressionCursorEnd, expressionValueEnd)
+        this.replaceRangeByOperatorInExpressionValue(
+            operator, expressionCursorStart, expressionCursorEnd
         );
-
-        this.shiftExpressionCursorByOperator(operator);
-
-        this.fireExpressionValueChange(builtExpressionValue);
     }
 
-    getExpressionValueLength () {
-        return this.props.expressionValue.length;
+    addWrappingOperator (openingOperator, closingOperator, fallbackOperator) {
+        const {
+            expressionCursorStart,
+            expressionCursorEnd,
+        } = this.state;
+
+        if (expressionCursorStart === expressionCursorEnd) {
+            this.insertOperatorInExpressionValue(fallbackOperator,  expressionCursorStart);
+        } else {
+            this.wrapRangeWithOperatorsInExpressionValue(
+                openingOperator, closingOperator, expressionCursorStart, expressionCursorEnd
+            );
+        }
+    }
+
+    wrapRangeWithOperatorsInExpressionValue (openingOperator, closingOperator, startOffset, endOffset) {
+        this.computeExpressionValueShiftingWithOperator(openingOperator, (expressionValueStartOffset, expressionValueEndOffset) => {
+            const expressionValueBeforeRange = this.substringExpressionValue(expressionValueStartOffset, startOffset);
+            const expressionValueInRange = this.substringExpressionValue(startOffset, endOffset);
+            const expressionValueAfter = this.substringExpressionValue(endOffset, expressionValueEndOffset);
+
+            return (
+                expressionValueBeforeRange +
+                openingOperator +
+                expressionValueInRange +
+                closingOperator +
+                expressionValueAfter
+            );
+        });
+    }
+
+    replaceRangeByOperatorInExpressionValue (operator, startOffset, endOffset) {
+        this.computeExpressionValueShiftingWithOperator(operator, (expressionValueStartOffset, expressionValueEndOffset) => {
+            const expressionValueStart = this.substringExpressionValue(expressionValueStartOffset, startOffset);
+            const expressionValueEnd = this.substringExpressionValue(endOffset, expressionValueEndOffset);
+
+            return expressionValueStart + operator + expressionValueEnd;
+        });
+    }
+
+    insertOperatorInExpressionValue (operator, offset) {
+        this.computeExpressionValueShiftingWithOperator(operator, (expressionValueStartOffset, expressionValueEndOffset) => {
+            const expressionValueStart = this.substringExpressionValue(expressionValueStartOffset, offset);
+            const expressionValueEnd = this.substringExpressionValue(offset, expressionValueEndOffset);
+
+            return expressionValueStart + operator + expressionValueEnd;
+        });
+    }
+
+    computeExpressionValueShiftingWithOperator (operator, f) {
+        const computedExpressionValue = f(
+            this.getExpressionValueStartOffset(),
+            this.getExpressionValueEndOffset(),
+        );
+
+        this.setExpressionValue(computedExpressionValue);
+
+        this.shiftExpressionCursorByOperatorLength(operator);
     }
 
     substringExpressionValue (start, end) {
@@ -67,14 +162,18 @@ export default class TruthTableExpressionForm extends React.Component {
     }
 
     shiftExpressionCursor (length) {
-        this.setState(({ expressionCursorStart, expressionCursorEnd }) => ({
+        this.setExpressionCursorWith(({expressionCursorStart, expressionCursorEnd}) => ({
             expressionCursorStart: expressionCursorStart + length,
             expressionCursorEnd: expressionCursorEnd + length,
         }));
     }
 
-    shiftExpressionCursorByOperator (operator) {
+    shiftExpressionCursorByOperatorLength (operator) {
         this.shiftExpressionCursor(operator.length);
+    }
+
+    fireExpressionValueChange (expressionValue) {
+        this.props.onExpressionValueChange(expressionValue);
     }
 
     onExpressionInputChange = (event) => {
@@ -89,16 +188,16 @@ export default class TruthTableExpressionForm extends React.Component {
         this.setExpressionCursorByInput(event.target);
     }
 
-    onFormSubmit = (event) => {
-        event.preventDefault();
+    onAddRegularOperator = (operator) => {
+        this.addRegularOperator(operator);
     }
 
-    fireExpressionValueChange (value) {
-        const { onExpressionValueChange } = this.props;
+    onAddWrappingOperator = (openingOperator, closingOperator, fallbackOperator) => {
+        this.addWrappingOperator(openingOperator, closingOperator, fallbackOperator);
+    }
 
-        if (onExpressionValueChange) {
-            onExpressionValueChange(value);
-        }
+    onFormSubmit = (event) => {
+        event.preventDefault();
     }
 
     render () {
@@ -108,117 +207,18 @@ export default class TruthTableExpressionForm extends React.Component {
         } = this.props;
 
         return (
-            <form
-                onSubmit={this.onFormSubmit}>
-                <TruthTableExpressionInput
-                    value={expressionValue}
-                    invalid={expressionValueIsInvalid}
-                    onChange={this.onExpressionInputChange}
-                    onKeyUp={this.onExpressionInputKeyUp}
-                    onMouseUp={this.onExpressionInputMouseUp} />
+            <TruthTableExpressionFormView
+                expressionValue={expressionValue}
+                expressionValueIsInvalid={expressionValueIsInvalid}
 
-                <OperatorGroupList>
-                    <OperatorGroupItem name="Negação">
-                        <OperatorList>
-                            <OperatorItem
-                                operator="¬"
-                                onAddOperator={this.onAddOperator}>
-                                &#172;
-                            </OperatorItem>
-                            <OperatorItem
-                                operator="~"
-                                onAddOperator={this.onAddOperator}>
-                                &#126;
-                            </OperatorItem>
-                            <OperatorItem
-                                operator="!"
-                                onAddOperator={this.onAddOperator}>
-                                &#33;
-                            </OperatorItem>
-                        </OperatorList>
-                    </OperatorGroupItem>
+                onExpressionInputKeyUp={this.onExpressionInputKeyUp}
+                onExpressionInputChange={this.onExpressionInputChange}
+                onExpressionInputMouseUp={this.onExpressionInputMouseUp}
 
-                    <OperatorGroupItem name="Conjunção">
-                        <OperatorList>
-                            <OperatorItem
-                                operator="∧"
-                                onAddOperator={this.onAddOperator}>
-                                &#8743;
-                            </OperatorItem>
-                            <OperatorItem
-                                operator="&"
-                                onAddOperator={this.onAddOperator}>
-                                &#38;
-                            </OperatorItem>
-                            <OperatorItem
-                                operator="*"
-                                onAddOperator={this.onAddOperator}>
-                                &#42;
-                            </OperatorItem>
-                        </OperatorList>
-                    </OperatorGroupItem>
+                onAddRegularOperator={this.onAddRegularOperator}
+                onAddWrappingOperator={this.onAddWrappingOperator}
 
-                    <OperatorGroupItem name="Disjunção">
-                        <OperatorList>
-                            <OperatorItem
-                                operator="∨"
-                                onAddOperator={this.onAddOperator}>
-                                &#8744;
-                            </OperatorItem>
-                            <OperatorItem
-                                operator="|"
-                                onAddOperator={this.onAddOperator}>
-                                &#124;
-                            </OperatorItem>
-                            <OperatorItem
-                                operator="+"
-                                onAddOperator={this.onAddOperator}>
-                                &#43;
-                            </OperatorItem>
-                        </OperatorList>
-                    </OperatorGroupItem>
-
-                    <OperatorGroupItem name="Condicional">
-                        <OperatorList>
-                            <OperatorItem
-                                operator="→"
-                                onAddOperator={this.onAddOperator}>
-                                &#8594;
-                            </OperatorItem>
-                            <OperatorItem
-                                operator="⇒"
-                                onAddOperator={this.onAddOperator}>
-                                &#8658;
-                            </OperatorItem>
-                            <OperatorItem
-                                operator="->"
-                                onAddOperator={this.onAddOperator}>
-                                &#45;&#62;
-                            </OperatorItem>
-                        </OperatorList>
-                    </OperatorGroupItem>
-
-                    <OperatorGroupItem name="Bicondicional">
-                        <OperatorList>
-                            <OperatorItem
-                                operator="↔"
-                                onAddOperator={this.onAddOperator}>
-                                &#8596;
-                            </OperatorItem>
-                            <OperatorItem
-                                operator="⇔"
-                                onAddOperator={this.onAddOperator}>
-                                &#8660;
-                            </OperatorItem>
-                            <OperatorItem
-                                operator="<->"
-                                onAddOperator={this.onAddOperator}>
-                                &#60;&#45;&#62;
-                            </OperatorItem>
-                        </OperatorList>
-                    </OperatorGroupItem>
-                </OperatorGroupList>
-            </form>
+                onFormSubmit={this.onFormSubmit} />
         );
     }
 }
