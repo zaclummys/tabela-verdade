@@ -1,4 +1,5 @@
 import React from 'react';
+import LocaleContext from '../../contexts/locale';
 
 function computeValidityClassNames (invalid) {
     if (invalid) {
@@ -16,21 +17,25 @@ export default function TruthTableExpressionInput ({
     onMouseUp,
 }) {
     return (
-        <input
-            required
-            autoFocus
-            type="text"
-            autoComplete="off"
-            placeholder="Digite a expressão lógica. Por exemplo (A ∧ B) → (C ∨ D)."
-            className={`
-                p-2 w-full border-2 rounded transition
-                ring-opacity-20 focus:ring-2
-                ${computeValidityClassNames(invalid)}
-            `}
-            value={value}
-            onKeyUp={onKeyUp}
-            onChange={onChange}
-            onMouseUp={onMouseUp}
-        />
-    )
+        <LocaleContext.Consumer>
+            {locale => (
+                <input
+                    required
+                    autoFocus
+                    type="text"
+                    autoComplete="off"
+                    placeholder={locale.truthTableInputHint}
+                    value={value}
+                    onKeyUp={onKeyUp}
+                    onChange={onChange}
+                    onMouseUp={onMouseUp}
+                    className={`
+                        p-2 w-full border-2 rounded transition
+                        ring-opacity-20 focus:ring-2
+                        ${computeValidityClassNames(invalid)}
+                    `}
+                />
+            )}
+        </LocaleContext.Consumer>
+    );
 }

@@ -1,21 +1,30 @@
 import React from 'react';
 
+import LocaleContext from '../../contexts/locale';
+
+import SwitchLanguageLink from './switch-language-link';
+
 export default function Header () {
     return (
-        <header className="my-8">
-            <h1 className="text-3xl font-bold text-primary">
-                Gerador de tabela-verdade
-            </h1>
+        <LocaleContext.Consumer>
+            {locale => (
+                <header className="my-8">
+                    <div className="flex items-center flex-col sm:flex-row sm:items-center">
+                        <h1 className="flex-auto text-3xl font-bold text-primary">
+                            {locale.headerTitle}
+                        </h1>
 
-            <p className="my-6">
-                Esta é uma ferramenta que facilita a geração da tabela-verdade de expressões lógicas on-line.
-                Ao digitar, a tabela atualizará automaticamente e exibirá todas as combinações possíveis.
-                Além disso, você poderá acompanhar progressivamente o desenvolvimento da expressão lógica através das
-                sub-expressões.
-                Você poderá utilizar diversos caracteres para compor a expressão lógica.
-                A precedência das expressões é a seguinte: Variável → Negação → Conjunção → Disjunção → Condicional →
-                Bicondicional.
-            </p>
-        </header>
+                        <div className="mt-3 sm:mt-0">
+                            <SwitchLanguageLink
+                                language={locale.language} />
+                        </div>
+                    </div>
+
+                    <p className="my-6">
+                        {locale.headerDescription}
+                    </p>
+                </header>
+            )}
+        </LocaleContext.Consumer>
     );
 }

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://tabelaverdade.gatsbyjs.io/</loc>
+
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tabelaverdade.gatsbyjs.io/"/>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://tabelaverdade.gatsbyjs.io/en-US"/>
+    </url>
+
+    <url>
+        <loc>https://tabelaverdade.gatsbyjs.io/en-US</loc>
+
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tabelaverdade.gatsbyjs.io/"/>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://tabelaverdade.gatsbyjs.io/en-US"/>
     </url>
 </urlset>

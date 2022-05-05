@@ -29,7 +29,7 @@ function normalize (rows, expressions) {
     };
 }
 
-export default function generate (input) {
+export default function generateTruthTable (input) {
     const source = new Source(input);
     const lexer = new Lexer(source);
     const parser = new Parser(lexer);

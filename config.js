@@ -17,13 +17,10 @@ checkEnvironmentVariables({
 });
 
 module.exports = {
-    name: 'Tabela-verdade',
-    metadata: {
-        title: 'Tabela-verdade | Gerar tabelas-verdade automaticamente',
-        description: 'Ferramenta para automatizar a criação da tabela-verdade de expressões lógicas on-line.',
-        keywords: 'gerador, tabela, verdade, expressão, on-line',
-        robots: 'index, follow',
-    },
+    linkedInUrl: 'https://www.linkedin.com/in/isaac-luiz-vieira-ferreira/',
+    repositoryUrl: 'https://github.com/zaclummys/tabela-verdade',
+    reportProblemUrl: 'https://github.com/zaclummys/tabela-verdade/issues/new',
+
     sentryDsnUrl: GATSBY_SENTRY_DSN_URL,
     googleSiteVerificationKey: GATSBY_GOOGLE_SITE_VERIFICATION_KEY,
     googleAnalyticsTrackingId: GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,

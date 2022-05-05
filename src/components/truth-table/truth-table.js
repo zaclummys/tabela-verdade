@@ -1,9 +1,8 @@
 import React from 'react';
 
-import generate from '../../library';
-import TruthTableRow from './truth-table-row';
-import TruthTableHeader from './truth-table-header';
-import TruthTablePlaceholder from './truth-table-placeholder';
+import generateTruthTable from '../../library';
+
+import TruthTableView from './truth-table-view';
 
 export default class TruthTable extends React.Component {
     constructor (props) {
@@ -56,7 +55,7 @@ export default class TruthTable extends React.Component {
                 const {
                     rows,
                     expressions,
-                } = generate(expressionValue);
+                } = generateTruthTable(expressionValue);
 
                 this.setTruthTable(rows, expressions);
             }
@@ -89,58 +88,17 @@ export default class TruthTable extends React.Component {
         }
     }
 
-    isRowsEmpty () {
-        return this.state.rows.length === 0;
-    }
-
-    isExpressionsEmpty () {
-        return this.state.expressions.length === 0;
-    }
-
-    shouldRenderPlaceholder () {
-        return this.isRowsEmpty() && this.isExpressionsEmpty();
-    }
-
     render () {
         const {
             rows,
             expressions,
         } = this.state;
 
-        if (this.shouldRenderPlaceholder()) {
-            return (
-                <TruthTablePlaceholder />
-            );
-        }
-
         return (
-            <table
-                className="group mx-auto table-auto ring-2 ring-primary rounded-sm cursor-default transition-shadow hover:ring-primary-dark shadow-md">
-                <thead
-                    className="bg-primary text-white border-b-2 border-primary group-hover:border-primary-dark">
-                    <tr>
-                        <TruthTableHeaderList
-                            expressions={expressions} />
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <TruthTableRowList
-                        rows={rows} />
-                </tbody>
-            </table>
+            <TruthTableView
+                rows={rows}
+                expressions={expressions} />
         );
     }
 }
 
-function TruthTableHeaderList ({ expressions }) {
-    return expressions.map(expression => (
-        <TruthTableHeader expression={expression} />
-    ));
-}
-
-function TruthTableRowList ({ rows }) {
-    return rows.map(values => (
-        <TruthTableRow values={values} />
-    ));
-}
