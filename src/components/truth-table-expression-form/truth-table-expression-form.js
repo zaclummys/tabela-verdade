@@ -79,11 +79,11 @@ export default class TruthTableExpressionForm extends React.Component {
     }
 
     addWindowMouseUpHandler () {
-        window.addEventListener('mouseup', this.windowMouseUpHandler);
+        window.addEventListener('pointerup', this.windowMouseUpHandler);
     }
 
     removeWindowMouseUpHandler () {
-        window.removeEventListener('mouseup', this.windowMouseUpHandler);
+        window.removeEventListener('pointerup', this.windowMouseUpHandler);
     }
 
     addRegularOperator (operator) {
