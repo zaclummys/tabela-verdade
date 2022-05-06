@@ -5,7 +5,7 @@ module.exports.createPages = async ({  actions }) => {
         fromPath: '/',
         toPath: '/en-US',
         conditions: {
-            language: ['en'],
+            country: ['us', 'gb'],
         }
     });
 };
