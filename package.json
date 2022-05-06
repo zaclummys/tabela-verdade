@@ -19,6 +19,7 @@
     "autoprefixer": "^10.4.7",
     "cssnano": "^5.0.17",
     "gatsby": "^4.13.1",
+    "gatsby-plugin-gatsby-cloud": "^4.13.0",
     "gatsby-plugin-google-gtag": "^4.13.0",
     "gatsby-plugin-postcss": "^5.13.0",
     "gatsby-plugin-react-helmet": "^5.13.0",
