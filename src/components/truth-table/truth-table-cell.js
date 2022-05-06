@@ -1,13 +1,18 @@
 import React from 'react';
+import LocaleContext from '../../contexts/locale';
 
 export default function TruthTableCell ({ value }) {
     return (
-        <td className="py-2 px-6 text-center font-medium text-sm">
-            {value ? (
-                <span>V</span>
-            ) : (
-                <span>F</span>
+        <LocaleContext.Consumer>
+            {locale => (
+                <td className="py-2 px-6 text-center font-medium text-sm">
+                    {value ? (
+                        <span>{locale.truthTableTrueCell}</span>
+                    ) : (
+                        <span>{locale.truthTableFalseCell}</span>
+                    )}
+                </td>
             )}
-        </td>
+        </LocaleContext.Consumer>
     );
 }
