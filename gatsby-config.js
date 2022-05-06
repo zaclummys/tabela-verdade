@@ -35,4 +35,5 @@ if (sentryDsnUrl) {
 
 module.exports = {
     plugins,
+    trailingSlash: 'never',
 };

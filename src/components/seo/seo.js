@@ -1,7 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { googleSiteVerificationKey } from '../../../config';
+import {
+    googleSiteVerificationKey,
+    microsoftSiteVerificationKey,
+} from '../../../config';
 
 import LocaleContext from '../../contexts/locale';
 
@@ -22,6 +25,10 @@ export default function SEO () {
 
                     {googleSiteVerificationKey && (
                         <meta name="google-site-verification" content={googleSiteVerificationKey} />
+                    )}
+
+                    {microsoftSiteVerificationKey && (
+                        <meta name="msvalidate.01" content={microsoftSiteVerificationKey} />
                     )}
 
                     <meta name="robots" content="index, follow" />

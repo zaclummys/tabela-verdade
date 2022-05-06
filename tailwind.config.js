@@ -1,7 +1,8 @@
 module.exports = {
-    mode: 'jit',
-    purge: ['./src/**/*.{js,jsx,ts,tsx}'],
-    darkMode: false, // or 'media' or 'class'
+    content: [
+        './public/**/*.html',
+        './src/**/*.{js,jsx,ts,tsx,vue}',
+    ],
     theme: {
         extend: {
             fontFamily: {
@@ -13,9 +14,6 @@ module.exports = {
                 'secondary': '#7616a6',
             },
         },
-    },
-    variants: {
-        extend: {},
     },
     plugins: [],
 }
