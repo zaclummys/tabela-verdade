@@ -1,6 +1,6 @@
 import React from 'react';
 
-import generateTruthTable from '../../library';
+import { truthTableGenerator } from '../../container';
 
 import TruthTableView from './truth-table-view';
 
@@ -8,7 +8,7 @@ export default class TruthTable extends React.Component {
     constructor (props) {
         super(props);
 
-        this.schedulingTruthTableGeneration = null;
+        this.generator = truthTableGenerator;
 
         this.state = {
             rows: [],
@@ -17,7 +17,13 @@ export default class TruthTable extends React.Component {
     }
 
     componentDidMount () {
-        this.scheduleTruthTableGeneration();
+        this.generator.onDidGenerate(data => {
+            this.setTruthTable(data.rows, data.expressions);
+        });
+    }
+
+    componentWillUnmount () {
+        this.generator.onDidGenerate(null);
     }
 
     componentDidUpdate (prevProps, prevState, snapshot) {
@@ -27,22 +33,12 @@ export default class TruthTable extends React.Component {
         const prevExpressionValue = prevProps.expressionValue;
 
         if (currExpressionValue !== prevExpressionValue) {
-            this.scheduleTruthTableGeneration();
+            this.generateTruthTable();
         }
     }
 
     isExpressionValueEmpty () {
         return this.props.expressionValue.length === 0;
-    }
-
-    scheduleTruthTableGeneration () {
-        if (this.schedulingTruthTableGeneration) {
-            clearTimeout(this.schedulingTruthTableGeneration);
-        }
-
-        this.schedulingTruthTableGeneration = setTimeout(() => {
-            this.generateTruthTable();
-        }, 16);
     }
 
     generateTruthTable () {
@@ -52,12 +48,7 @@ export default class TruthTable extends React.Component {
             if (this.isExpressionValueEmpty()) {
                 this.clearTruthTable();
             } else {
-                const {
-                    rows,
-                    expressions,
-                } = generateTruthTable(expressionValue);
-
-                this.setTruthTable(rows, expressions);
+                this.generator.generate(expressionValue);
             }
 
             this.fireInvalidExpressionValue(false);
@@ -66,11 +57,25 @@ export default class TruthTable extends React.Component {
         }
     }
 
+    hasRows () {
+        return this.state.rows.length > 0;
+    }
+
+    hasExpressions () {
+        return this.state.expressions.length > 0;
+    }
+
+    shouldClearTruthTable () {
+        return this.hasRows() || this.hasExpressions();
+    }
+
     clearTruthTable () {
-        this.setState({
-            rows: [],
-            expressions: [],
-        });
+        if (this.shouldClearTruthTable()) {
+            this.setState({
+                rows: [],
+                expressions: [],
+            });
+        }
     }
 
     setTruthTable (rows, expressions) {
