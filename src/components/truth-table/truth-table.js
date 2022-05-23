@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { truthTableGenerator } from '../../container';
-
 import TruthTableView from './truth-table-view';
+import AsyncTruthTableGeneratorStrategy
+    from '../../services/truth-table-generator/async-truth-table-generator-strategy';
+import SyncTruthTableGeneratorStrategy from '../../services/truth-table-generator/sync-truth-table-generator-strategy';
 
 export default class TruthTable extends React.Component {
     constructor (props) {
         super(props);
 
-        this.generator = truthTableGenerator;
+        this.generator = null;
 
         this.state = {
             rows: [],
@@ -17,13 +18,21 @@ export default class TruthTable extends React.Component {
     }
 
     componentDidMount () {
+        if (AsyncTruthTableGeneratorStrategy.isAvailable()) {
+            this.generator = new AsyncTruthTableGeneratorStrategy();
+        } else {
+            this.generator = new SyncTruthTableGeneratorStrategy();
+        }
+
         this.generator.onDidGenerate(data => {
             this.setTruthTable(data.rows, data.expressions);
         });
     }
 
     componentWillUnmount () {
-        this.generator.onDidGenerate(null);
+        if (this.generator.shouldBeTerminated()) {
+            this.generator.terminate()
+        }
     }
 
     componentDidUpdate (prevProps, prevState, snapshot) {

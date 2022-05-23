@@ -16,4 +16,12 @@ export default class AsyncTruthTableGeneratorStrategy {
     onDidGenerate (callback) {
         this.worker.receive(callback);
     }
+
+    shouldBeTerminated () {
+        return true;
+    }
+
+    terminate () {
+        this.worker.terminate();
+    }
 }

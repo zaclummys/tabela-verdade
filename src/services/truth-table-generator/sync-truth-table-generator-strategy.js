@@ -14,4 +14,8 @@ export default class SyncTruthTableGeneratorStrategy {
     onDidGenerate (callback) {
         this.callback = callback;
     }
+
+    shouldBeTerminated () {
+        return false;
+    }
 }

@@ -16,4 +16,8 @@ export default class WorkerAdapter {
             };
         }
     }
+
+    terminate () {
+        this.worker.terminate();
+    }
 }

@@ -17,4 +17,10 @@ export default class TruthTableGenerator {
     onDidGenerate (callback) {
         this.generator.onDidGenerate(callback);
     }
+
+    terminate () {
+        if (this.generator.shouldBeTerminated()) {
+            this.generator.terminate()
+        }
+    }
 }
