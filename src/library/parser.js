@@ -119,7 +119,7 @@ export default class Parser {
             throw new Error('Expected opening parenthesis');
         }
 
-        const expression = this.parseConditionalExpression();
+        const expression = this.parseBiconditionalExpression();
 
         if (!this.match(ClosingParenthesis)) {
             throw new Error('Expected closing parenthesis');
