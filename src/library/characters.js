@@ -1,6 +1,6 @@
-export const NOT = '¬';
 export const TILDE = '~';
 export const EXCLAMATION = '!';
+export const LOGICAL_NOT = '¬';
 
 export const CARET = '^';
 export const ASTERISK = '*';

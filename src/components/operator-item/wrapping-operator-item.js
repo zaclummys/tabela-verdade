@@ -1,26 +1,20 @@
 import React from 'react';
 import OperatorItem from './operator-item';
 
-export default class WrappingOperatorItem extends React.Component {
-    onButtonClick = () => {
-        const {
+export default function WrappingOperatorItem ({
+    children,
+    openingOperator,
+    closingOperator,
+    fallbackOperator,
+    onAddWrappingOperator,
+}) {
+    return (
+        <OperatorItem onButtonClick={() => onAddWrappingOperator(
             openingOperator,
             closingOperator,
             fallbackOperator,
-            onAddWrappingOperator,
-        } = this.props;
-
-        onAddWrappingOperator(openingOperator, closingOperator, fallbackOperator);
-    }
-
-    render () {
-        const { children } = this.props;
-
-        return (
-            <OperatorItem
-                onButtonClick={this.onButtonClick}>
-                {children}
-            </OperatorItem>
-        );
-    }
+        )}>
+            {children}
+        </OperatorItem>
+    );
 }

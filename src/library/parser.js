@@ -15,7 +15,7 @@ import {
 } from './tokens';
 
 import {
-    Identifier,
+    NameExpression,
 
     NotExpression,
     AndExpression,
@@ -26,20 +26,18 @@ import {
 } from './expressions';
 
 export default class Parser {
-    constructor (tokens) {
-        this.tokens = tokens;
+    constructor (lexer) {
+        this.lexer = lexer;
     }
 
-    check (t) {
-        return this.tokens.peek() instanceof t;
+    check (type) {
+        return this.lexer.isPeekTypeOf(type);
     }
 
-    match (t) {
-        if (this.check(t)) {
-            return this.tokens.next();
+    match (type) {
+        if (this.check(type)) {
+            return this.lexer.next();
         }
-
-        return null;
     }
 
     parse () {
@@ -101,17 +99,21 @@ export default class Parser {
     }
 
     parsePrimaryExpression () {
-        const token = this.tokens.peek();
+        const token = this.lexer.peek();
 
         if (token instanceof OpeningParenthesis) {
             return this.parseParenthesisExpression();
         }
 
         if (token instanceof Name) {
-            return this.parseIdentifier();
+            return this.parseNameExpression();
         }
 
-        throw new Error('Unexpected expression');
+        if (token instanceof End) {
+            throw new Error('Unexpected end');
+        }
+
+        throw new Error('Unexpected token');
     }
 
     parseParenthesisExpression () {
@@ -128,13 +130,13 @@ export default class Parser {
         return expression;
     }
 
-    parseIdentifier () {
+    parseNameExpression () {
         const name = this.match(Name);
 
-        if (!name) {
+        if (name) {
+            return new NameExpression(name.getName());
+        } else {
             throw new Error('Expected name');
         }
-
-        return new Identifier(name.getString());
     }
 }

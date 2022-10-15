@@ -1,5 +1,8 @@
 import {
-    Identifier,
+    NameExpression,
+
+    UnaryExpression,
+    BinaryExpression,
 
     NotExpression,
     OrExpression,
@@ -15,48 +18,43 @@ export default class Interpreter {
     }
 
     evaluate (expression) {
-        if (expression instanceof Identifier) {
-            return this.variables.get(expression.name);
+        if (expression instanceof NameExpression) {
+            return this.variables[expression.name];
         }
 
-        if (expression instanceof NotExpression) {
-            return !this.evaluate(expression.inner);
+        if (expression instanceof UnaryExpression) {
+            const inner = this.evaluate(expression.getInner());
+
+            if (expression instanceof NotExpression) {
+                return !inner;
+            }
+
+            throw new Error('Unable to evaluate unary expression');
         }
 
-        if (expression instanceof AndExpression) {
-            const left = this.evaluate(expression.left);
-            const right = this.evaluate(expression.right);
+        if (expression instanceof BinaryExpression) {
+            const left = this.evaluate(expression.getLeft());
+            const right = this.evaluate(expression.getRight());
 
-            return left && right;
+            if (expression instanceof AndExpression) {
+                return left && right;
+            }
+
+            if (expression instanceof OrExpression) {
+                return left || right;
+            }
+
+            if (expression instanceof ConditionalExpression) {
+                return !left || right;
+            }
+
+            if (expression instanceof BiconditionalExpression) {
+                return (left && right) || (!left && !right);
+            }
+
+            throw new Error('Unable to evaluate binary expression');
         }
 
-        if (expression instanceof OrExpression) {
-            const left = this.evaluate(expression.left);
-            const right = this.evaluate(expression.right);
-
-            return left || right;
-        }
-
-        if (expression instanceof ConditionalExpression) {
-            const left = this.evaluate(expression.left);
-            const right = this.evaluate(expression.right);
-
-            return !left || right;
-        }
-
-        if (expression instanceof BiconditionalExpression) {
-            const left = this.evaluate(expression.left);
-            const right = this.evaluate(expression.right);
-
-            return (left && right) || (!left && !right);
-        }
-
-        throw new Error('Unable to evaluate this expression');
-    }
-
-    *evaluateMany (expressions) {
-        for (const expression of expressions) {
-            yield this.evaluate(expression);
-        }
+        throw new Error('Unable to evaluate expression');
     }
 }

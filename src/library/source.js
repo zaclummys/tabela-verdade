@@ -4,10 +4,6 @@ export default class Source {
         this.input = input;
     }
 
-    at () {
-        return this.offset;
-    }
-
     span (start, end) {
         return this.input.slice(start, end);
     }
@@ -18,5 +14,21 @@ export default class Source {
 
     bump () {
         this.offset += 1;
+    }
+
+    takeWhile (f) {
+        const start = this.offset;
+
+        this.skipWhile(f);
+
+        const end = this.offset;
+
+        return this.span(start, end);
+    }
+
+    skipWhile (f) {
+        while (f(this.peek())) {
+            this.bump();
+        }
     }
 }

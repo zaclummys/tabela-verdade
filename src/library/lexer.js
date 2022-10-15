@@ -1,5 +1,5 @@
 import {
-    NOT,
+    LOGICAL_NOT,
     TILDE,
     EXCLAMATION,
 
@@ -39,13 +39,13 @@ import {
 } from './tokens';
 
 function isWhiteSpace (ch) {
-    return ch === ' ' // Space
-            || ch === '\n' // New line
+    return ch === '\n' // New line
             || ch === '\r' // Return
             || ch === '\t' // Tab
             || ch === '\v' // Vertical tab
             || ch === '\b' // Backspace
             || ch === '\f' // Form feed
+            || ch === '\x20' // Space
             || ch === '\xA0'; // No-break space
 }
 
@@ -73,7 +73,7 @@ export default class Lexer {
 
     peek () {
         if (this.peeked == null) {
-            this.peeked = this.lex();
+            this.peeked = this.next();
         }
 
         return this.peeked;
@@ -82,38 +82,16 @@ export default class Lexer {
     next () {
         if (this.peeked) {
             return this.take();
-        } else {
-            return this.lex();
-        }
-    }
-
-    name () {
-        const start = this.source.at();
-
-        while (isAlphabetic(this.source.peek()) || isNumber(this.source.peek())) {
-            this.source.bump();
         }
 
-        const end = this.source.at();
-
-        return new Name(this.source.span(start, end));
-    }
-
-    skipWhiteSpaces () {
-        while (isWhiteSpace(this.source.peek())) {
-            this.source.bump();
-        }
-    }
-
-    lex () {
-        this.skipWhiteSpaces();
+        this.source.skipWhile(isWhiteSpace);
 
         const ch = this.source.peek();
 
         switch (ch) {
-            case NOT:
             case TILDE:
             case EXCLAMATION:
+            case LOGICAL_NOT:
                 this.source.bump();
 
                 return new Not();
@@ -156,38 +134,40 @@ export default class Lexer {
                 return new ClosingParenthesis();
 
             default:
-                if (ch) {
-                    if (isAlphabetic(ch)) {
-                        return this.name();
-                    }
+                if (ch == null) {
+                    return new End();
+                }
 
-                    if (ch === '<') {
-                        this.source.bump();
+                if (ch === '<') {
+                    this.source.bump();
 
-                        if (this.source.peek() === '-') {
-                            this.source.bump();
-
-                            if (this.source.peek() === '>') {
-                                this.source.bump();
-
-                                return new Biconditional();
-                            }
-                        }
-                    }
-                    else if (ch === '-') {
+                    if (this.source.peek() === '-') {
                         this.source.bump();
 
                         if (this.source.peek() === '>') {
                             this.source.bump();
 
-                            return new Conditional();
+                            return new Biconditional();
                         }
                     }
+                }
+                else if (ch === '-') {
+                    this.source.bump();
 
-                    throw new Error('Unexpected character');
+                    if (this.source.peek() === '>') {
+                        this.source.bump();
+
+                        return new Conditional();
+                    }
+                } else if (isAlphabetic(ch)) {
+                    const name = this.source.takeWhile(ch => {
+                        return isAlphabetic(ch) || isNumber(ch);
+                    });
+
+                    return new Name(name);
                 }
 
-                return new End();
+                throw new Error('Unexpected character');
         }
     }
 }

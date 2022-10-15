@@ -1,24 +1,14 @@
 import React from 'react';
 import OperatorItem from './operator-item';
 
-export default class RegularOperatorItem extends React.Component {
-    onButtonClick = () => {
-        const {
-            operator,
-            onAddRegularOperator,
-        } = this.props;
-
-        onAddRegularOperator(operator);
-    }
-
-    render () {
-        const { children } = this.props;
-
-        return (
-           <OperatorItem
-               onButtonClick={this.onButtonClick}>
-               {children}
-           </OperatorItem>
-        )
-    }
+export default function RegularOperatorItem ({
+    children,
+    operator,
+    onAddRegularOperator,
+}) {
+    return (
+       <OperatorItem onButtonClick={() => onAddRegularOperator(operator)}>
+           {children}
+       </OperatorItem>
+    );
 }

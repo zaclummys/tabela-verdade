@@ -1,38 +1,17 @@
 import React from 'react';
 
+import generateTruthTable from '../../library';
+
 import TruthTableView from './truth-table-view';
-import AsyncTruthTableGeneratorStrategy
-    from '../../services/truth-table-generator/async-truth-table-generator-strategy';
-import SyncTruthTableGeneratorStrategy from '../../services/truth-table-generator/sync-truth-table-generator-strategy';
 
 export default class TruthTable extends React.Component {
     constructor (props) {
         super(props);
 
-        this.generator = null;
-
         this.state = {
             rows: [],
             expressions: [],
         };
-    }
-
-    componentDidMount () {
-        if (AsyncTruthTableGeneratorStrategy.isAvailable()) {
-            this.generator = new AsyncTruthTableGeneratorStrategy();
-        } else {
-            this.generator = new SyncTruthTableGeneratorStrategy();
-        }
-
-        this.generator.onDidGenerate(data => {
-            this.setTruthTable(data.rows, data.expressions);
-        });
-    }
-
-    componentWillUnmount () {
-        if (this.generator.shouldBeTerminated()) {
-            this.generator.terminate()
-        }
     }
 
     componentDidUpdate (prevProps, prevState, snapshot) {
@@ -57,11 +36,15 @@ export default class TruthTable extends React.Component {
             if (this.isExpressionValueEmpty()) {
                 this.clearTruthTable();
             } else {
-                this.generator.generate(expressionValue);
+                const [expressions, rows] = generateTruthTable(expressionValue);
+
+                this.setTruthTable(rows, expressions);
             }
 
             this.fireInvalidExpressionValue(false);
-        } catch {
+        } catch (error) {
+            console.error(error);
+
             this.fireInvalidExpressionValue(true);
         }
     }

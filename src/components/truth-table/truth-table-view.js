@@ -19,15 +19,13 @@ export default function TruthTableView ({
             className="group mx-auto table-auto ring-2 ring-primary rounded-sm cursor-default transition-shadow hover:ring-primary-dark shadow-md">
             <thead
                 className="bg-primary text-white border-b-2 border-primary group-hover:border-primary-dark">
-            <tr>
-                <TruthTableHeaderList
-                    expressions={expressions}/>
-            </tr>
+                <tr>
+                    <TruthTableHeaderList expressions={expressions} />
+                </tr>
             </thead>
 
             <tbody>
-                <TruthTableRowList
-                    rows={rows}/>
+                <TruthTableRowList rows={rows}/>
             </tbody>
         </table>
     );
@@ -35,12 +33,12 @@ export default function TruthTableView ({
 
 function TruthTableHeaderList({expressions}) {
     return expressions.map(expression => (
-        <TruthTableHeader expression={expression}/>
+        <TruthTableHeader expression={expression} />
     ));
 }
 
 function TruthTableRowList({rows}) {
     return rows.map(values => (
-        <TruthTableRow values={values}/>
+        <TruthTableRow values={values} />
     ));
 }
