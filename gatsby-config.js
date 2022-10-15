@@ -29,7 +29,7 @@ if (sentryDsnUrl) {
                 sampleRate: 1.0,
                 dsn: sentryDsnUrl,
             },
-        }
+        },
     );
 }
 
