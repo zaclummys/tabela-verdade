@@ -5,7 +5,7 @@ function computeValidityClassNames (invalid) {
     if (invalid) {
         return 'ring-red-500 border-red-500 hover:border-red-500 focus:border-red-500';
     } else {
-        return 'ring-primary border-gray-200 hover:border-primary focus:border-primary';
+        return 'ring-primary border-gray-300 hover:border-primary focus:border-primary';
     }
 }
 
