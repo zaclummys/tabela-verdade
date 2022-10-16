@@ -29,7 +29,7 @@ const enUS = {
     truthTableOperatorBiconditional: 'Biconditional',
 
     footerRepositoryLink: 'Repository',
-    footerReportProblemLink: 'Report problem',
+    footerDonateLink: 'Donate',
 };
 
 export default enUS;

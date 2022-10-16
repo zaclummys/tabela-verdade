@@ -29,7 +29,7 @@ const ptBR = {
     truthTableOperatorBiconditional: 'Bicondicional',
 
     footerRepositoryLink: 'Repositório',
-    footerReportProblemLink: 'Reportar problema',
+    footerDonateLink: 'Doar',
 };
 
 export default ptBR;

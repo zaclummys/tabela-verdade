@@ -1,3 +1,13 @@
+function getEnvironmentVariables () {
+    return {
+        GATSBY_SENTRY_DSN_URL: process.env.GATSBY_SENTRY_DSN_URL,
+        GATSBY_PAYPAL_DONATE_URL: process.env.GATSBY_PAYPAL_DONATE_URL,
+        GATSBY_GOOGLE_ANALYTICS_TRACKING_ID: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,
+        GATSBY_GOOGLE_SITE_VERIFICATION_KEY: process.env.GATSBY_GOOGLE_SITE_VERIFICATION_KEY,
+        GATSBY_MICROSOFT_SITE_VERIFICATION_KEY: process.env.GATSBY_MICROSOFT_SITE_VERIFICATION_KEY,
+    };
+}
+
 function checkEnvironmentVariables (variables) {
     for (const [variableKey, variableValue] of Object.entries(variables)) {
         if (variableValue == null) {
@@ -6,25 +16,18 @@ function checkEnvironmentVariables (variables) {
     }
 }
 
-const GATSBY_SENTRY_DSN_URL = process.env.GATSBY_SENTRY_DSN_URL;
-const GATSBY_GOOGLE_SITE_VERIFICATION_KEY = process.env.GATSBY_GOOGLE_SITE_VERIFICATION_KEY;
-const GATSBY_GOOGLE_ANALYTICS_TRACKING_ID = process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID;
-const GATSBY_MICROSOFT_SITE_VERIFICATION_KEY = process.env.GATSBY_MICROSOFT_SITE_VERIFICATION_KEY;
+const environmentVariables = getEnvironmentVariables();
 
-checkEnvironmentVariables({
-    GATSBY_SENTRY_DSN_URL,
-    GATSBY_GOOGLE_SITE_VERIFICATION_KEY,
-    GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,
-    GATSBY_MICROSOFT_SITE_VERIFICATION_KEY,
-});
+checkEnvironmentVariables(environmentVariables);
 
 module.exports = {
     linkedInUrl: 'https://www.linkedin.com/in/isaac-luiz-vieira-ferreira/',
     repositoryUrl: 'https://github.com/zaclummys/tabela-verdade',
-    reportProblemUrl: 'https://github.com/zaclummys/tabela-verdade/issues/new',
+    donateUrl: environmentVariables.GATSBY_PAYPAL_DONATE_URL,
 
-    sentryDsnUrl: GATSBY_SENTRY_DSN_URL,
-    googleSiteVerificationKey: GATSBY_GOOGLE_SITE_VERIFICATION_KEY,
-    googleAnalyticsTrackingId: GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,
-    microsoftSiteVerificationKey: GATSBY_MICROSOFT_SITE_VERIFICATION_KEY,
+    sentryDsnUrl: environmentVariables.GATSBY_SENTRY_DSN_URL,
+    paypalDonateUrl: environmentVariables.GATSBY_PAYPAL_DONATE_URL,
+    googleAnalyticsTrackingId: environmentVariables.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,
+    googleSiteVerificationKey: environmentVariables.GATSBY_GOOGLE_SITE_VERIFICATION_KEY,
+    microsoftSiteVerificationKey: environmentVariables.GATSBY_MICROSOFT_SITE_VERIFICATION_KEY,
 };
