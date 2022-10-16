@@ -8,7 +8,7 @@ export default function Header () {
     return (
         <LocaleContext.Consumer>
             {locale => (
-                <header className="my-8">
+                <header className="my-8 print:hidden">
                     <div className="flex items-center flex-col-reverse sm:flex-row sm:items-center">
                         <h1 className="flex-auto text-3xl font-bold text-primary text-center sm:text-left">
                             {locale.headerTitle}
