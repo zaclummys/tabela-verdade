@@ -10,7 +10,7 @@ import LocaleContext from '../../contexts/locale';
 
 export default function TruthTableExpressionFormView ({
     expressionValue,
-    expressionValueIsInvalid,
+    expressionValueValidity,
 
     onExpressionInputKeyUp,
     onExpressionInputChange,
@@ -28,7 +28,7 @@ export default function TruthTableExpressionFormView ({
                     onSubmit={onFormSubmit}>
                     <TruthTableExpressionInput
                         value={expressionValue}
-                        invalid={expressionValueIsInvalid}
+                        validity={expressionValueValidity}
                         onKeyUp={onExpressionInputKeyUp}
                         onChange={onExpressionInputChange}
                         onMouseUp={onExpressionInputMouseUp} />

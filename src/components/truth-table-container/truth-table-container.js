@@ -9,7 +9,7 @@ export default class TruthTableContainer extends React.Component {
 
         this.state = {
             expressionValue: '',
-            expressionValueIsInvalid: false,
+            expressionValueValidity: true,
         };
     }
 
@@ -17,36 +17,41 @@ export default class TruthTableContainer extends React.Component {
         this.setState({ expressionValue });
     }
 
-    setExpressionValueIsInvalid (expressionValueIsInvalid) {
-        this.setState({ expressionValueIsInvalid });
+    setExpressionValueValidity (expressionValueValidity) {
+        this.setState({ expressionValueValidity });
     }
 
     onExpressionValueChange = (expressionValue) => {
         this.setExpressionValue(expressionValue);
     }
 
-    onInvalidExpressionValue = (invalid) => {
-        this.setExpressionValueIsInvalid(invalid);
+    onValidExpressionValue = () => {
+        this.setExpressionValueValidity(true);
+    }
+
+    onInvalidExpressionValue = () => {
+        this.setExpressionValueValidity(false);
     }
 
     render () {
         const {
             expressionValue,
-            expressionValueIsInvalid,
+            expressionValueValidity,
         } = this.state;
         
         return (
             <div className="my-8">
-                <div className="my-6">
+                <div className="my-6 print:hidden">
                     <TruthTableExpressionForm
                         expressionValue={expressionValue}
-                        expressionValueIsInvalid={expressionValueIsInvalid}
+                        expressionValueValidity={expressionValueValidity}
                         onExpressionValueChange={this.onExpressionValueChange} />
                 </div>
 
                 <div className="table pr-8 my-8 w-full">
                     <TruthTable
                         expressionValue={expressionValue}
+                        onValidExpressionValue={this.onValidExpressionValue}
                         onInvalidExpressionValue={this.onInvalidExpressionValue} />
                 </div>
             </div>

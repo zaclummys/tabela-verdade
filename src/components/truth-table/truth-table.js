@@ -2,7 +2,8 @@ import React from 'react';
 
 import generateTruthTable from '../../library';
 
-import TruthTableView from './truth-table-view';
+import TruthTableContent from './truth-table-content';
+import TruthTableContentPlaceholder from './truth-table-content-placeholder';
 
 export default class TruthTable extends React.Component {
     constructor (props) {
@@ -10,7 +11,7 @@ export default class TruthTable extends React.Component {
 
         this.state = {
             rows: [],
-            expressions: [],
+            headers: [],
         };
     }
 
@@ -25,77 +26,62 @@ export default class TruthTable extends React.Component {
         }
     }
 
-    isExpressionValueEmpty () {
-        return this.props.expressionValue.length === 0;
-    }
-
     generateTruthTable () {
         const { expressionValue } = this.props;
 
         try {
-            if (this.isExpressionValueEmpty()) {
-                this.clearTruthTable();
-            } else {
-                const [expressions, rows] = generateTruthTable(expressionValue);
+            if (expressionValue.length > 0) {
+                const [headers, rows] = generateTruthTable(expressionValue);
 
-                this.setTruthTable(rows, expressions);
+                this.setTruthTable(rows, headers);
+            } else {
+                this.clearTruthTable();
             }
 
-            this.fireInvalidExpressionValue(false);
+            this.fireValidExpressionValue();
         } catch (error) {
             console.error(error);
 
-            this.fireInvalidExpressionValue(true);
+            this.fireInvalidExpressionValue();
         }
-    }
-
-    hasRows () {
-        return this.state.rows.length > 0;
-    }
-
-    hasExpressions () {
-        return this.state.expressions.length > 0;
-    }
-
-    shouldClearTruthTable () {
-        return this.hasRows() || this.hasExpressions();
     }
 
     clearTruthTable () {
-        if (this.shouldClearTruthTable()) {
-            this.setState({
-                rows: [],
-                expressions: [],
-            });
-        }
-    }
-
-    setTruthTable (rows, expressions) {
         this.setState({
-            rows,
-            expressions,
+            rows: [],
+            headers: [],
         });
     }
 
-    fireInvalidExpressionValue (error) {
-        const { onInvalidExpressionValue } = this.props;
+    setTruthTable (rows, headers) {
+        this.setState({
+            rows,
+            headers,
+        });
+    }
 
-        if (onInvalidExpressionValue) {
-            onInvalidExpressionValue(error);
-        }
+    fireInvalidExpressionValue () {
+        this.props.onInvalidExpressionValue();
+    }
+
+    fireValidExpressionValue () {
+        this.props.onValidExpressionValue();
     }
 
     render () {
-        const {
-            rows,
-            expressions,
-        } = this.state;
+        const { rows, headers } = this.state;
 
-        return (
-            <TruthTableView
-                rows={rows}
-                expressions={expressions} />
-        );
+        if (rows.length === 0 && headers.length === 0) {
+            return (
+                <TruthTableContentPlaceholder />
+            );
+        } else {
+            return (
+                <TruthTableContent
+                    rows={rows}
+                    headers={headers} />
+            );
+        }
     }
 }
 

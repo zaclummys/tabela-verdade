@@ -203,13 +203,13 @@ export default class TruthTableExpressionForm extends React.Component {
     render () {
         const {
             expressionValue,
-            expressionValueIsInvalid,
+            expressionValueValidity,
         } = this.props;
 
         return (
             <TruthTableExpressionFormView
                 expressionValue={expressionValue}
-                expressionValueIsInvalid={expressionValueIsInvalid}
+                expressionValueValidity={expressionValueValidity}
 
                 onExpressionInputKeyUp={this.onExpressionInputKeyUp}
                 onExpressionInputChange={this.onExpressionInputChange}
