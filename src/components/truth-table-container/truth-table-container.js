@@ -48,7 +48,7 @@ export default class TruthTableContainer extends React.Component {
                         onExpressionValueChange={this.onExpressionValueChange} />
                 </div>
 
-                <div className="table pr-8 my-8 w-full">
+                <div className="p-1 my-8 overflow-x-auto">
                     <TruthTable
                         expressionValue={expressionValue}
                         onValidExpressionValue={this.onValidExpressionValue}
