@@ -4,7 +4,7 @@ import LinkText from './link-text';
 
 export default function ExternalLink ({ url, children }) {
     return (
-        <a target="_blank" rel="noreferrer" href={url}>
+        <a target="_blank" href={url}>
             <LinkText>
                 {children}
             </LinkText>
