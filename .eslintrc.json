@@ -1,3 +1,33 @@
 {
-  "extends": "next/core-web-vitals"
+    "extends": [
+        "next/core-web-vitals",
+        "eslint:all",
+        "plugin:react/all",
+        "next"
+    ],
+    "rules": {
+        "no-extra-parens": "off",
+        "no-console": "off",
+        "react/jsx-closing-bracket-location": ["error", "tag-aligned"],
+        "react/forbid-component-props": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-no-literals": "off",
+        "react/jsx-sort-props": "off",
+        "no-else-return": "off",
+        "react/jsx-no-bind": "off",
+        "sort-imports": "off",
+        "padded-blocks": "off",
+        "indent": ["error", 4, {
+            "SwitchCase": 1
+        }],
+        "comma-dangle":  ["error", "always-multiline"],
+        "func-style": "off",
+        "quotes":  ["error", "single"],
+        "one-var": ["error", "never"],
+        "quote-props": ["error", "as-needed"],
+        "object-curly-spacing": ["error", "always"],
+        "sort-keys": "off",
+        "max-len": "off",
+        "new-cap": "off"
+    }
 }
