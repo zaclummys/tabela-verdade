@@ -1,7 +1,9 @@
 import {
     replaceSelectionWithOperator,
     wrapSelectionWithOperators,
-} from '~/string';
+} from '../src/string';
+
+import { describe, it, expect } from 'vitest';
 
 describe('String', () => {
     describe('Replace selection with operator', () => {
