@@ -3,8 +3,6 @@ import {
     wrapSelectionWithOperators,
 } from '../src/string';
 
-import { describe, it, expect } from 'vitest';
-
 describe('String', () => {
     describe('Replace selection with operator', () => {
         describe('Without selection', () => {
