@@ -7,7 +7,8 @@ export default function RegularOperatorButton ({
     return (
         <OperatorButton
             data-operator={operator}
-            onClick={onClick}>
+            onClick={onClick}
+        >
             {operator}
         </OperatorButton>
     );

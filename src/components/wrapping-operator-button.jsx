@@ -11,7 +11,8 @@ export default function WrappingOperatorButton ({
             data-opening-operator={openingOperator}
             data-closing-operator={closingOperator}
             data-default-operator={defaultOperator}
-            onClick={onClick}>
+            onClick={onClick}
+        >
             {defaultOperator}
         </OperatorButton>
     );

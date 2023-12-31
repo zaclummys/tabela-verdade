@@ -5,33 +5,33 @@ export class ExpressionPresenter {
 }
 
 export class NameExpressionPresenter extends ExpressionPresenter {
-    constructor(name) {
+    constructor (name) {
         super();
 
         this.name = name;
     }
 
-    shouldPresentWithParenthesis() {
+    shouldPresentWithParenthesis () {
         return false;
     }
 
-    present() {
+    present () {
         return this.name;
     }
 }
 
 export class UnaryExpressionPresenter extends ExpressionPresenter {
-    constructor(inner) {
+    constructor (inner) {
         super();
 
         this.inner = inner;
     }
 
-    shouldPresentWithParenthesis() {
+    shouldPresentWithParenthesis () {
         return true;
     }
 
-    presentInner() {
+    presentInner () {
         if (this.inner.shouldPresentWithParenthesis()) {
             return `(${this.inner.present()})`;
         } else {
@@ -41,24 +41,24 @@ export class UnaryExpressionPresenter extends ExpressionPresenter {
 }
 
 export class NotExpressionPresenter extends UnaryExpressionPresenter {
-    present() {
+    present () {
         return `¬ ${this.presentInner()}`;
     }
 }
 
 export class BinaryExpressionPresenter extends ExpressionPresenter {
-    constructor(left, right) {
+    constructor (left, right) {
         super();
 
         this.left = left;
         this.right = right;
     }
 
-    shouldPresentWithParenthesis() {
+    shouldPresentWithParenthesis () {
         return true;
     }
 
-    presentLeft() {
+    presentLeft () {
         if (this.left.shouldPresentWithParenthesis()) {
             return `(${this.left.present()})`;
         } else {
@@ -66,7 +66,7 @@ export class BinaryExpressionPresenter extends ExpressionPresenter {
         }
     }
 
-    presentRight() {
+    presentRight () {
         if (this.right.shouldPresentWithParenthesis()) {
             return `(${this.right.present()})`;
         } else {
@@ -76,25 +76,25 @@ export class BinaryExpressionPresenter extends ExpressionPresenter {
 }
 
 export class AndExpressionPresenter extends BinaryExpressionPresenter {
-    present() {
+    present () {
         return `${this.presentLeft()} ∧ ${this.presentRight()}`;
     }
 }
 
 export class OrExpressionPresenter extends BinaryExpressionPresenter {
-    present() {
+    present () {
         return `${this.presentLeft()} ∨ ${this.presentRight()}`;
     }
 }
 
 export class ConditionalExpressionPresenter extends BinaryExpressionPresenter {
-    present() {
+    present () {
         return `${this.presentLeft()} → ${this.presentRight()}`;
     }
 }
 
 export class BiconditionalExpressionPresenter extends BinaryExpressionPresenter {
-    present() {
+    present () {
         return `${this.presentLeft()} ↔ ${this.presentRight()}`;
     }
 }

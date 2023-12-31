@@ -27,7 +27,7 @@ export default class PeekableLexer {
     }
 
     take () {
-        const peeked = this.peeked;
+        const { peeked } = this;
 
         this.peeked = null;
 

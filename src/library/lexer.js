@@ -39,14 +39,14 @@ import {
 } from './tokens';
 
 function isWhiteSpace (ch) {
-    return ch === '\n' // New line
-            || ch === '\r' // Return
-            || ch === '\t' // Tab
-            || ch === '\v' // Vertical tab
-            || ch === '\b' // Backspace
-            || ch === '\f' // Form feed
-            || ch === '\x20' // Space
-            || ch === '\xA0'; // No-break space
+    return ch === '\n' || // New line
+            ch === '\r' || // Return
+            ch === '\t' || // Tab
+            ch === '\v' || // Vertical tab
+            ch === '\b' || // Backspace
+            ch === '\f' || // Form feed
+            ch === '\x20' || // Space
+            ch === '\xA0'; // No-break space
 }
 
 function isNumber (ch) {
@@ -64,7 +64,7 @@ export default class Lexer {
     }
 
     take () {
-        const peeked = this.peeked;
+        const { peeked } = this;
 
         this.peeked = null;
 
@@ -150,8 +150,7 @@ export default class Lexer {
                             return new Biconditional();
                         }
                     }
-                }
-                else if (ch === '-') {
+                } else if (ch === '-') {
                     this.source.bump();
 
                     if (this.source.peek() === '>') {
@@ -160,7 +159,7 @@ export default class Lexer {
                         return new Conditional();
                     }
                 } else if (isAlphabetic(ch)) {
-                    const name = this.source.takeWhile(ch => isAlphabetic(ch) || isNumber(ch));
+                    const name = this.source.takeWhile((ch) => isAlphabetic(ch) || isNumber(ch));
 
                     return new Name(name);
                 }

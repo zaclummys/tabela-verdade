@@ -58,7 +58,7 @@ const regular = {
         LEFT_RIGHT_ARROW,
         LEFT_RIGHT_DOUBLE_ARROW,
     ],
-}
+};
 
 export default {
     wrapping,

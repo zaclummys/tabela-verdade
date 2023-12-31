@@ -57,32 +57,32 @@ export class NotExpression extends UnaryExpression {
 
 export class AndExpression extends BinaryExpression {
     isEqual (other) {
-        return other instanceof AndExpression
-            && this.left.isEqual(other.left)
-            && this.right.isEqual(other.right);
+        return other instanceof AndExpression &&
+            this.left.isEqual(other.left) &&
+            this.right.isEqual(other.right);
     }
 }
 
 export class OrExpression extends BinaryExpression {
     isEqual (other) {
-        return other instanceof OrExpression
-            && this.left.isEqual(other.left)
-            && this.right.isEqual(other.right);
+        return other instanceof OrExpression &&
+            this.left.isEqual(other.left) &&
+            this.right.isEqual(other.right);
     }
 }
 
 export class ConditionalExpression extends BinaryExpression {
     isEqual (other) {
-        return other instanceof ConditionalExpression
-            && this.left.isEqual(other.left)
-            && this.right.isEqual(other.right);
+        return other instanceof ConditionalExpression &&
+            this.left.isEqual(other.left) &&
+            this.right.isEqual(other.right);
     }
 }
 
 export class BiconditionalExpression extends BinaryExpression {
     isEqual (other) {
-        return other instanceof BiconditionalExpression
-            && this.left.isEqual(other.left)
-            && this.right.isEqual(other.right);
+        return other instanceof BiconditionalExpression &&
+            this.left.isEqual(other.left) &&
+            this.right.isEqual(other.right);
     }
 }

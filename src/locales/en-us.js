@@ -1,5 +1,6 @@
 const enUS = {
     language: 'en-US',
+    direction: 'ltr',
 
     title: 'Truth table | Generate truth tables online',
     description: 'Tool to automate the creation of truth table using logical expressions online.',

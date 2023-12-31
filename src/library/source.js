@@ -5,7 +5,10 @@ export default class Source {
     }
 
     span (start, end) {
-        return this.input.slice(start, end);
+        return this.input.slice(
+            start,
+            end
+        );
     }
 
     peek () {
@@ -23,7 +26,10 @@ export default class Source {
 
         const end = this.offset;
 
-        return this.span(start, end);
+        return this.span(
+            start,
+            end
+        );
     }
 
     skipWhile (f) {

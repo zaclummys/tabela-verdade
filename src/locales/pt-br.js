@@ -1,5 +1,6 @@
 const ptBR = {
     language: 'pt-BR',
+    direction: 'ltr',
 
     title: 'Gerador de Tabela-verdade | Gerar tabelas-verdade on-line',
     description: 'Ferramenta para automatizar a criação de tabela-verdade usando expressões lógicas on-line.',

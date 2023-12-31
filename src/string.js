@@ -4,7 +4,10 @@ export function replaceSelectionWithOperator ({
     selectionEnd,
     operator,
 }) {
-    const before = string.slice(0, selectionStart);
+    const before = string.slice(
+        0,
+        selectionStart
+    );
     const after = string.slice(selectionEnd);
 
     return `${before}${operator}${after}`;
@@ -17,8 +20,14 @@ export function wrapSelectionWithOperators ({
     openingOperator,
     closingOperator,
 }) {
-    const before = string.slice(0, selectionStart);
-    const selected = string.slice(selectionStart, selectionEnd);
+    const before = string.slice(
+        0,
+        selectionStart
+    );
+    const selected = string.slice(
+        selectionStart,
+        selectionEnd
+    );
     const after = string.slice(selectionEnd);
 
     return `${before}${openingOperator}${selected}${closingOperator}${after}`;

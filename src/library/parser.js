@@ -54,7 +54,10 @@ export default class Parser {
         const expression = this.parseConditionalExpression();
 
         if (this.match(Biconditional)) {
-            return new BiconditionalExpression(expression, this.parseBiconditionalExpression());
+            return new BiconditionalExpression(
+                expression,
+                this.parseBiconditionalExpression()
+            );
         }
 
         return expression;
@@ -64,7 +67,10 @@ export default class Parser {
         const expression = this.parseOrExpression();
 
         if (this.match(Conditional)) {
-            return new ConditionalExpression(expression, this.parseConditionalExpression());
+            return new ConditionalExpression(
+                expression,
+                this.parseConditionalExpression()
+            );
         }
 
         return expression;
@@ -74,7 +80,10 @@ export default class Parser {
         const expression = this.parseAndExpression();
 
         if (this.match(Or)) {
-            return new OrExpression(expression, this.parseOrExpression());
+            return new OrExpression(
+                expression,
+                this.parseOrExpression()
+            );
         }
 
         return expression;
@@ -84,7 +93,10 @@ export default class Parser {
         const expression = this.parseNotExpression();
 
         if (this.match(And)) {
-            return new AndExpression(expression, this.parseAndExpression());
+            return new AndExpression(
+                expression,
+                this.parseAndExpression()
+            );
         }
 
         return expression;

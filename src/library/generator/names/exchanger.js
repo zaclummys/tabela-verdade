@@ -18,8 +18,14 @@ export default class NamesExchanger {
             const falseSlice = [];
 
             for (let j = 0; j < permutations.length; j++) {
-                trueSlice[j] = [true, ...permutations[j]];
-                falseSlice[j] = [false, ...permutations[j]];
+                trueSlice[j] = [
+                    true,
+                    ...permutations[j],
+                ];
+                falseSlice[j] = [
+                    false,
+                    ...permutations[j],
+                ];
             }
 
             permutations = [
@@ -42,7 +48,10 @@ export default class NamesExchanger {
     }
 
     exchange (names) {
-        return this.createListOfPermutations(names.length)
-            .map(permutation => this.createMapWithPermutedVariables(names, permutation));
+        return this.createListOfPermutations(names.length).
+            map((permutation) => this.createMapWithPermutedVariables(
+                names,
+                permutation
+            ));
     }
 }

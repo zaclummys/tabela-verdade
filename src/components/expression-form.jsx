@@ -9,24 +9,34 @@ import OperatorButtonBlocksContainer from '~/components/operator-button-blocks-c
 import generateTruthTable from '~/library';
 
 export default function ExpressionForm ({ locale }) {
-    const [truthTable, setTruthTable] = useState(null);
+    const [
+        truthTable,
+        setTruthTable,
+    ] = useState(null);
 
     const expressionInputRef = useRef(null);
-    const [expressionInputValue, setExpressionInputValue] = useState('');
-    const [expressionInputValidity, setExpressionInputValidity] = useState(true);
-    const [expressionInputSelection, setExpressionInputSelection] = useState({
+    const [
+        expressionInputValue,
+        setExpressionInputValue,
+    ] = useState('');
+    const [
+        expressionInputValidity,
+        setExpressionInputValidity,
+    ] = useState(true);
+    const [
+        expressionInputSelection,
+        setExpressionInputSelection,
+    ] = useState({
         selectionStart: 0,
         selectionEnd: 0,
     });
 
     const deferredExpressionInputValue = useDeferredValue(expressionInputValue);
 
-    const getExpressionInputRefSelection = () => {
-        return {
-            selectionStart: expressionInputRef.current.selectionStart,
-            selectionEnd: expressionInputRef.current.selectionEnd,
-        };
-    }
+    const getExpressionInputRefSelection = () => ({
+        selectionStart: expressionInputRef.current.selectionStart,
+        selectionEnd: expressionInputRef.current.selectionEnd,
+    });
 
     const setExpressionInputRefSelection = ({
         selectionStart,
@@ -34,7 +44,7 @@ export default function ExpressionForm ({ locale }) {
     }) => {
         expressionInputRef.current.selectionStart = selectionStart;
         expressionInputRef.current.selectionEnd = selectionEnd;
-    }
+    };
 
     const focusExpressionInputRef = () => {
         expressionInputRef.current.focus();
@@ -46,14 +56,12 @@ export default function ExpressionForm ({ locale }) {
             selectionEnd,
         } = getExpressionInputRefSelection();
 
-        setExpressionInputValue(expressionInputValue => {
-            return replaceSelectionWithOperator({
-                string: expressionInputValue,
-                selectionStart: selectionStart,
-                selectionEnd: selectionEnd,
-                operator: operator,
-            });
-        });
+        setExpressionInputValue((expressionInputValue) => replaceSelectionWithOperator({
+            string: expressionInputValue,
+            selectionStart,
+            selectionEnd,
+            operator,
+        }));
 
         setExpressionInputSelection({
             selectionStart: selectionStart + operator.length,
@@ -73,21 +81,21 @@ export default function ExpressionForm ({ locale }) {
             selectionEnd,
         } = getExpressionInputRefSelection();
 
-        setExpressionInputValue(expressionInputValue => {
+        setExpressionInputValue((expressionInputValue) => {
             if (selectionStart === selectionEnd) {
                 return replaceSelectionWithOperator({
                     string: expressionInputValue,
-                    selectionStart: selectionStart,
-                    selectionEnd: selectionEnd,
+                    selectionStart,
+                    selectionEnd,
                     operator: defaultOperator,
                 });
             } else {
                 return wrapSelectionWithOperators({
                     string: expressionInputValue,
-                    selectionStart: selectionStart,
-                    selectionEnd: selectionEnd,
-                    openingOperator: openingOperator,
-                    closingOperator: closingOperator,
+                    selectionStart,
+                    selectionEnd,
+                    openingOperator,
+                    closingOperator,
                 });
             }
         });
@@ -116,31 +124,37 @@ export default function ExpressionForm ({ locale }) {
             closingOperator,
             defaultOperator,
         });
-    }
+    };
 
     const handleRegularOperatorButtonClick = (event) => {
         replaceExpressionInputSelectionWithOperator(event.target.dataset.operator);
-    }
+    };
 
-    useEffect(() => {
-        if (deferredExpressionInputValue) {
-            try {
-                const truthTable = generateTruthTable(deferredExpressionInputValue);
+    useEffect(
+        () => {
+            if (deferredExpressionInputValue) {
+                try {
+                    const truthTable = generateTruthTable(deferredExpressionInputValue);
 
-                setTruthTable(truthTable);
+                    setTruthTable(truthTable);
+                    setExpressionInputValidity(true);
+                } catch {
+                    setExpressionInputValidity(false);
+                }
+            } else {
                 setExpressionInputValidity(true);
-            } catch {
-                setExpressionInputValidity(false);
+                setTruthTable(null);
             }
-        } else {
-            setExpressionInputValidity(true);
-            setTruthTable(null);
-        }
-    }, [deferredExpressionInputValue]);
+        },
+        [deferredExpressionInputValue]
+    );
 
-    useEffect(() => {
-        setExpressionInputRefSelection(expressionInputSelection);
-    }, [expressionInputSelection]);
+    useEffect(
+        () => {
+            setExpressionInputRefSelection(expressionInputSelection);
+        },
+        [expressionInputSelection]
+    );
 
     const {
         truthTableHint,

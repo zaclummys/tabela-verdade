@@ -20,9 +20,7 @@ export default class ExpressionsExtractor {
     }
 
     hasExpression (expressionToBeCompared) {
-        return this.expressions.some(currentExpression => {
-            return expressionToBeCompared.isEqual(currentExpression);
-        });
+        return this.expressions.some((currentExpression) => expressionToBeCompared.isEqual(currentExpression));
     }
 
     addExpression (expressionToBeAdded) {

@@ -34,21 +34,19 @@ export default class Generator {
     }
 
     generateValues (mapsWithPermutedVariables, expressions) {
-        return mapsWithPermutedVariables.map(mapWithPermutedVariables => {
+        return mapsWithPermutedVariables.map((mapWithPermutedVariables) => {
             const interpreter = new Interpreter(mapWithPermutedVariables);
 
-            return expressions.map(expression => {
-                return interpreter.evaluate(expression);
-            });
+            return expressions.map((expression) => interpreter.evaluate(expression));
         });
     }
 
     generatePresentableExpressions (expressions) {
         const expressionPresenterFactory = new ExpressionPresenterFactory();
 
-        return expressions
-            .map(expression => expressionPresenterFactory.create(expression))
-            .map(expression => expression.present());
+        return expressions.
+            map((expression) => expressionPresenterFactory.create(expression)).
+            map((expression) => expression.present());
     }
 
     generate () {
@@ -59,7 +57,10 @@ export default class Generator {
 
         return [
             this.generatePresentableExpressions(expressions),
-            this.generateValues(mapsWithPermutedVariables, expressions),
+            this.generateValues(
+                mapsWithPermutedVariables,
+                expressions
+            ),
         ];
     }
 }

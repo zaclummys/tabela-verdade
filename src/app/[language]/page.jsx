@@ -36,7 +36,8 @@ export default function Home ({ params: { language } }) {
                     </HeaderTitleText>
 
                     <ToggleLanguageLink
-                        language={locale.language} />
+                        language={locale.language}
+                    />
                 </HeaderTitle>
 
                 <HeaderDescription>
@@ -45,18 +46,21 @@ export default function Home ({ params: { language } }) {
             </Header>
 
             <ExpressionForm
-                locale={locale} />
+                locale={locale}
+            />
 
             <Footer>
                 <CustomLink
                     href={linkedInUrl}
-                    target="_blank">
+                    target="_blank"
+                >
                     Isaac Luiz Vieira Ferreira
                 </CustomLink>
 
                 <CustomLink
                     href={repositoryUrl}
-                    target="_blank">
+                    target="_blank"
+                >
                     {locale.footerRepositoryLinkLabel}
                 </CustomLink>
             </Footer>

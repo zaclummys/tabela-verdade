@@ -10,8 +10,8 @@ export default class ExpressionsSorter {
     }
 
     sort (expressions) {
-        return expressions.slice()
-            .sort((expressionA, expressionB) => {
+        return expressions.slice().
+            sort((expressionA, expressionB) => {
                 const precedenceExpressionA = this.getExpressionPrecedence(expressionA);
                 const precedenceExpressionB = this.getExpressionPrecedence(expressionB);
 

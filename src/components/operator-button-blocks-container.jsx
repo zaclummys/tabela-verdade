@@ -30,7 +30,7 @@ export default function OperatorButtonBlocksContainer ({
         },
         {
             label: locale.conditionalOperatorButtonBlockLabel,
-            regular: operators.regular.conditional
+            regular: operators.regular.conditional,
         },
         {
             label: locale.biconditionalOperatorButtonBlockLabel,
@@ -40,34 +40,41 @@ export default function OperatorButtonBlocksContainer ({
 
     return (
         <OperatorButtonBlocks>
-            {blocks.map(block => (
+            {blocks.map((block) => (
                 <OperatorButtonBlock key={block.label}>
                     <OperatorButtonBlockLabel>
                         {block.label}
                     </OperatorButtonBlockLabel>
 
                     <OperatorButtonBlockList>
-                        {block.wrapping ? (
-                            [block.wrapping.opening, block.wrapping.closing].map(operator => (
-                                <OperatorButton
-                                    key={operator}
-                                    data-default-operator={operator}
-                                    data-opening-operator={block.wrapping.opening}
-                                    data-closing-operator={block.wrapping.closing}
-                                    onClick={onWrappingOperatorButtonClick}>
-                                    {operator}
-                                </OperatorButton>
-                            ))
-                        ) : (
-                            block.regular.map(operator => (
-                                <OperatorButton
-                                    key={operator}
-                                    data-operator={operator}
-                                    onClick={onRegularOperatorButtonClick}>
-                                    {operator}
-                                </OperatorButton>
-                            ))
-                        )}
+                        {block.wrapping
+                            ? (
+                                [
+                                    block.wrapping.opening,
+                                    block.wrapping.closing,
+                                ].map((operator) => (
+                                    <OperatorButton
+                                        key={operator}
+                                        data-default-operator={operator}
+                                        data-opening-operator={block.wrapping.opening}
+                                        data-closing-operator={block.wrapping.closing}
+                                        onClick={onWrappingOperatorButtonClick}
+                                    >
+                                        {operator}
+                                    </OperatorButton>
+                                ))
+                            )
+                            : (
+                                block.regular.map((operator) => (
+                                    <OperatorButton
+                                        key={operator}
+                                        data-operator={operator}
+                                        onClick={onRegularOperatorButtonClick}
+                                    >
+                                        {operator}
+                                    </OperatorButton>
+                                ))
+                            )}
                     </OperatorButtonBlockList>
                 </OperatorButtonBlock>
             ))}

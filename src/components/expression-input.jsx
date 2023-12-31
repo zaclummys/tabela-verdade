@@ -24,6 +24,7 @@ export default function ExpressionInput ({
             type="text"
             autoComplete="off"
             className={className}
-            {...props} />
+            {...props}
+        />
     );
 }
