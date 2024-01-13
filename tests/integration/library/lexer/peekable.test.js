@@ -3,11 +3,9 @@ import Lexer from '../../../../src/library/lexer';
 import PeekableLexer from '../../../../src/library/lexer/peekable';
 
 import {
-    Or,
-    Not,
     Name,
     Conditional,
-} from '../../../../src/library/tokens';
+} from '~/library/tokens';
 
 function createPeekableLexerFromString (string) {
     return new PeekableLexer(new Lexer(new Source(string)));

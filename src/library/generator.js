@@ -3,9 +3,6 @@ import Interpreter from './interpreter';
 import extractNames from './generator/names/extractor';
 import permuteNames from './generator/names/exchanger';
 
-import ExpressionsExtractor from './generator/expressions/extractor';
-import ExpressionsSorter from './generator/expressions/sorter';
-
 import ExpressionPresenterFactory from './generator/presenter/factory';
 import sortExpressions from './generator/expressions/sorter';
 import extractExpressions from './generator/expressions/extractor';

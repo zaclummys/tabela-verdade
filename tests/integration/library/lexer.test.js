@@ -10,7 +10,7 @@ import {
     Not,
     OpeningParenthesis,
     Or,
-} from '../../../src/library/tokens';
+} from '~/library/tokens';
 
 function createLexerFromString (string) {
     return new Lexer(new Source(string));

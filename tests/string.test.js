@@ -1,7 +1,7 @@
 import {
     replaceSelectionWithOperator,
     wrapSelectionWithOperators,
-} from '../src/string';
+} from '~/string';
 
 describe('String', () => {
     describe('Replace selection with operator', () => {

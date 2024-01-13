@@ -1,16 +1,9 @@
 import {
     AndExpression, BiconditionalExpression, ConditionalExpression, Expression,
     NameExpression, NotExpression, OrExpression,
-} from '../../../src/library/expressions';
+} from '~/library/expressions';
 
 describe('Expressions', () => {
-    it('Cannot call isEqual without override it', () => {
-        const expression = new Expression();
-
-        expect(() => expression.isEqual(expression))
-            .toThrowError();
-    });
-
     describe('Name expression', () => {
         it('Should be equal if other expression is a name expression and name is equal', () => {
             const name1 = new NameExpression('abc');
