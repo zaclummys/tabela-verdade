@@ -1,8 +1,8 @@
-import z from 'zod';
+import zod from 'zod';
 
-const environmentVariablesSchema = z.object({
-    NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: z.string(),
-    NEXT_PUBLIC_MICROSOFT_SITE_VERIFICATION: z.string(),
+const environmentVariablesSchema = zod.object({
+    NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: zod.string(),
+    NEXT_PUBLIC_MICROSOFT_SITE_VERIFICATION: zod.string(),
 });
 
 const environmentVariables = environmentVariablesSchema.parse({

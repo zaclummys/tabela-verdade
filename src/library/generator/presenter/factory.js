@@ -60,28 +60,28 @@ export default class ExpressionPresenterFactory {
         if (expression instanceof AndExpression) {
             return new AndExpressionPresenter(
                 left,
-                right
+                right,
             );
         }
 
         if (expression instanceof OrExpression) {
             return new OrExpressionPresenter(
                 left,
-                right
+                right,
             );
         }
 
         if (expression instanceof ConditionalExpression) {
             return new ConditionalExpressionPresenter(
                 left,
-                right
+                right,
             );
         }
 
         if (expression instanceof BiconditionalExpression) {
             return new BiconditionalExpressionPresenter(
                 left,
-                right
+                right,
             );
         }
 

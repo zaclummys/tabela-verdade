@@ -4,11 +4,18 @@ export function replaceSelectionWithOperator ({
     selectionEnd,
     operator,
 }) {
+    const stringStart = 0;
+    const stringEnd = string.length;
+
     const before = string.slice(
-        0,
-        selectionStart
+        stringStart,
+        selectionStart,
     );
-    const after = string.slice(selectionEnd);
+
+    const after = string.slice(
+        selectionEnd,
+        stringEnd,
+    );
 
     return `${before}${operator}${after}`;
 }
@@ -20,15 +27,22 @@ export function wrapSelectionWithOperators ({
     openingOperator,
     closingOperator,
 }) {
+    const stringStart = 0;
+    const stringEnd = string.length;
+
     const before = string.slice(
-        0,
-        selectionStart
+        stringStart,
+        selectionStart,
     );
     const selected = string.slice(
         selectionStart,
-        selectionEnd
+        selectionEnd,
     );
-    const after = string.slice(selectionEnd);
+
+    const after = string.slice(
+        selectionEnd,
+        stringEnd,
+    );
 
     return `${before}${openingOperator}${selected}${closingOperator}${after}`;
 }

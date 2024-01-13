@@ -1,4 +1,5 @@
 import CustomLink from '~/components/custom-link';
+
 export default function ToggleLanguageLink ({ language }) {
     switch (language) {
         case 'en-US':

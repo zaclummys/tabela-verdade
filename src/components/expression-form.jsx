@@ -146,14 +146,14 @@ export default function ExpressionForm ({ locale }) {
                 setTruthTable(null);
             }
         },
-        [deferredExpressionInputValue]
+        [deferredExpressionInputValue],
     );
 
     useEffect(
         () => {
             setExpressionInputRefSelection(expressionInputSelection);
         },
-        [expressionInputSelection]
+        [expressionInputSelection],
     );
 
     const {

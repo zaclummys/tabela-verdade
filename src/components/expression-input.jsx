@@ -15,7 +15,7 @@ export default function ExpressionInput ({
 }) {
     const className = twMerge(
         'p-2 w-full border-2 rounded transition ease-out ring-opacity-40 focus:ring-2',
-        computeValidityClassNames(validity)
+        computeValidityClassNames(validity),
     );
 
     return (
