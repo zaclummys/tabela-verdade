@@ -1,24 +1,42 @@
-import NamesExchanger from '../../../../../src/library/generator/names/exchanger';
+import permuteNames from '../../../../../src/library/generator/names/exchanger';
 
 describe('Name exchanger', () => {
-    it('Should accept an empty list of names', () => {
-        const exchanger = new NamesExchanger();
-
-        expect(exchanger.exchange([])).toEqual([]);
+    it('Should exchange an empty list of names', () => {
+        expect(permuteNames([])).toStrictEqual([]);
     });
 
-    it('Should exchange the values of the names', () => {
-        const exchanger = new NamesExchanger();
+    it('Should exchange a list with a variable', () => {
+        const maps = permuteNames(['a']);
 
-        expect(exchanger.exchange(['a', 'b', 'c'])).toEqual([
-            {a: true, b: true, c: true},
-            {a: true, b: true, c: false},
-            {a: true, b: false, c: true},
-            {a: true, b: false, c: false},
-            {a: false, b: true, c: true},
-            {a: false, b: true, c: false},
-            {a: false, b: false, c: true},
-            {a: false, b: false, c: false},
+        expect(maps).toStrictEqual([
+            new Map([['a', true]]),
+            new Map([['a', false]]),
+        ]);
+    });
+
+    it('Should exchange a list with two variables', () => {
+        const maps = permuteNames(['a', 'b']);
+
+        expect(maps).toStrictEqual([
+            new Map([['a', true], ['b', true]]),
+            new Map([['a', true], ['b', false]]),
+            new Map([['a', false], ['b', true]]),
+            new Map([['a', false], ['b', false]]),
+        ]);
+    });
+
+    it('Should exchange a list with three variables', () => {
+        const maps = permuteNames(['a', 'b', 'c']);
+
+        expect(maps).toStrictEqual([
+            new Map([['a', true], ['b', true], ['c', true]]),
+            new Map([['a', true], ['b', true], ['c', false]]),
+            new Map([['a', true], ['b', false], ['c', true]]),
+            new Map([['a', true], ['b', false], ['c', false]]),
+            new Map([['a', false], ['b', true], ['c', true]]),
+            new Map([['a', false], ['b', true], ['c', false]]),
+            new Map([['a', false], ['b', false], ['c', true]]),
+            new Map([['a', false], ['b', false], ['c', false]]),
         ]);
     });
 });

@@ -1,5 +1,3 @@
-import ExpressionsExtractor from '../../../../../src/library/generator/expressions/extractor';
-
 import {
     NameExpression,
     NotExpression,
@@ -7,11 +5,11 @@ import {
     OrExpression,
 } from '../../../../../src/library/expressions';
 
+import extractExpressions from '../../../../../src/library/generator/expressions/extractor';
+
 describe('Expression extractor', () => {
     it('Should extract unique expressions', () => {
-        const extractor = new ExpressionsExtractor();
-
-        extractor.extract(new OrExpression(
+        const expressions = extractExpressions(new OrExpression(
             new AndExpression(
                 new NotExpression(
                     new NameExpression('a'),
@@ -26,7 +24,7 @@ describe('Expression extractor', () => {
             ),
         ));
 
-        expect(extractor.getExpressions()).toEqual([
+        expect(expressions).toStrictEqual([
             new NameExpression('a'),
             new NotExpression(
                 new NameExpression('a'),

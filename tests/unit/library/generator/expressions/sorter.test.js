@@ -6,12 +6,11 @@ import {
     AndExpression,
     OrExpression,
 } from '../../../../../src/library/expressions';
+import sortExpressions from '../../../../../src/library/generator/expressions/sorter';
 
 describe('Expression sorted', () => {
     it('Should sort expressions', () => {
-        const sorter = new ExpressionsSorter();
-
-        expect(sorter.sort([
+        expect(sortExpressions([
             new NameExpression('a'),
             new NameExpression('b'),
             new OrExpression(
@@ -31,7 +30,7 @@ describe('Expression sorted', () => {
                     new NameExpression('c')
                 ),
             ),
-        ])).toEqual([
+        ])).toStrictEqual([
             new NameExpression('a'),
             new NameExpression('b'),
             new NameExpression('c'),

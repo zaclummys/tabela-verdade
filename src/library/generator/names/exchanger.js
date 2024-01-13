@@ -1,57 +1,54 @@
 /**
  * This class is responsible for create a list of maps with permuted variables from a list of names.
  */
+import zip from '../../zip';
 
-export default class NamesExchanger {
-    createListOfPermutations (length) {
-        if (length === 0) {
-            return [];
-        }
+function permute (length) {
+    if (length === 0) {
+        return [];
+    }
 
-        let permutations = [
-            [true],
-            [false],
-        ];
+    let permutations = [
+        [true],
+        [false],
+    ];
 
-        for (let i = 1; i < length; i++) {
-            const trueSlice = [];
-            const falseSlice = [];
+    for (let i = 1; i < length; i++) {
+        const trueSlice = [];
+        const falseSlice = [];
 
-            for (let j = 0; j < permutations.length; j++) {
-                trueSlice[j] = [
-                    true,
-                    ...permutations[j],
-                ];
-                falseSlice[j] = [
-                    false,
-                    ...permutations[j],
-                ];
-            }
+        for (let j = 0; j < permutations.length; j++) {
+            trueSlice[j] = [
+                true,
+                ...permutations[j],
+            ];
 
-            permutations = [
-                ...trueSlice,
-                ...falseSlice,
+            falseSlice[j] = [
+                false,
+                ...permutations[j],
             ];
         }
 
-        return permutations;
+        permutations = [
+            ...trueSlice,
+            ...falseSlice,
+        ];
     }
 
-    createMapWithPermutedVariables (names, permutation) {
-        const mapWithPermutedVariables = {};
+    return permutations;
+}
 
-        for (let index = 0; index < permutation.length && index < names.length; index++) {
-            mapWithPermutedVariables[names[index]] = permutation[index];
+export default function permuteNames (names) {
+    const permutations = permute(names.length);
+
+    return permutations.map((permutation) => {
+        const map = new Map();
+
+        for (const [name, value] of zip(names, permutation)) {
+            map.set(name, value);
         }
 
-        return mapWithPermutedVariables;
-    }
-
-    exchange (names) {
-        return this.createListOfPermutations(names.length).
-            map((permutation) => this.createMapWithPermutedVariables(
-                names,
-                permutation
-            ));
-    }
+        return map;
+    });
 }
+

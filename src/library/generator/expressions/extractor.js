@@ -3,7 +3,7 @@ import {
     BinaryExpression,
 } from '../../expressions';
 
-export default class ExpressionsExtractor {
+class ExpressionsExtractor {
     constructor () {
         this.expressions = [];
     }
@@ -32,4 +32,12 @@ export default class ExpressionsExtractor {
     getExpressions () {
         return this.expressions;
     }
+}
+
+export default function extractExpressions (expression) {
+    const extractor = new ExpressionsExtractor();
+
+    extractor.extract(expression);
+
+    return extractor.getExpressions();
 }

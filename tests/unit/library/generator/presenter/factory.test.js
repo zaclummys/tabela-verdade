@@ -1,28 +1,24 @@
-import ExpressionPresenterFactory from '../../../../../src/library/generator/presenter/factory';
-
+import ExpressionPresenterFactory from '~/library/generator/presenter/factory';
 import {
-    NameExpression,
-    NotExpression,
-    AndExpression,
-    OrExpression,
-    ConditionalExpression,
-    BiconditionalExpression,
-} from '../../../../../src/library/expressions';
-
-import {
+    AndExpressionPresenter,
+    BiconditionalExpressionPresenter,
+    ConditionalExpressionPresenter,
     NameExpressionPresenter,
     NotExpressionPresenter,
-    AndExpressionPresenter,
     OrExpressionPresenter,
-    ConditionalExpressionPresenter,
-    BiconditionalExpressionPresenter,
-} from '../../../../../src/library/generator/presenter/implementations';
-
+} from '~/library/generator/presenter/implementations';
 import {
-    BadExpression,
-    BadUnaryExpression,
-    BadBinaryExpression,
-} from '../../../../stubs/expressions';
+    AndExpression,
+    BiconditionalExpression, BinaryExpression, ConditionalExpression, Expression,
+    NameExpression,
+    NotExpression,
+    OrExpression, UnaryExpression,
+} from '~/library/expressions';
+
+export class BadExpression extends Expression {}
+export class BadUnaryExpression extends UnaryExpression {}
+export class BadBinaryExpression extends BinaryExpression {}
+
 
 describe('Expression Presenter Factory', () => {
     const factory = new ExpressionPresenterFactory();
