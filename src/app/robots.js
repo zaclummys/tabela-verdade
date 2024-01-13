@@ -1,7 +1,7 @@
-import { url } from '~/config';
+import { mergeUrl } from '~/config';
 
 export default function robots () {
-    const sitemapUrl =  new URL('/sitemap.xml', url);
+    const sitemapUrl =  mergeUrl('sitemap.xml');
 
     return {
         sitemap: sitemapUrl,

@@ -12,6 +12,10 @@ const environmentVariables = environmentVariablesSchema.parse({
     NEXT_PUBLIC_MICROSOFT_SITE_VERIFICATION: process.env.NEXT_PUBLIC_MICROSOFT_SITE_VERIFICATION,
 });
 
-export const url = environmentVariables.NEXT_PUBLIC_VERCEL_URL;
+export const baseUrl = environmentVariables.NEXT_PUBLIC_VERCEL_URL;
 export const googleSiteVerification = environmentVariables.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 export const microsoftSiteVerification = environmentVariables.NEXT_PUBLIC_MICROSOFT_SITE_VERIFICATION;
+
+export function mergeUrl (relativeUrl) {
+    return `https://${baseUrl}/${relativeUrl}`;
+}

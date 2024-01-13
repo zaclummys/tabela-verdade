@@ -1,7 +1,7 @@
 import enUS from './en-us';
 import ptBR from './pt-br';
 
-import { url } from '~/config';
+import { mergeUrl, url } from '~/config';
 
 const languages = [
     enUS,
@@ -10,7 +10,7 @@ const languages = [
 
 export function getAvailableLanguages () {
     return languages.map(({ code, label }) => {
-        const absoluteUrl = new URL(code, url);
+        const absoluteUrl = mergeUrl(code);
 
         return {
             code,
