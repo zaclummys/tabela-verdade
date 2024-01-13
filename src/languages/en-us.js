@@ -1,5 +1,7 @@
 const enUS = {
-    language: 'en-US',
+    code: 'en-US',
+    label: 'English (en-US)',
+
     direction: 'ltr',
 
     title: 'Truth table | Generate truth tables online',

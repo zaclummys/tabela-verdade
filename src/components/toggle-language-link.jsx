@@ -1,22 +1,20 @@
 import CustomLink from '~/components/custom-link';
+import { getAvailableLanguages } from '~/languages';
 
-export default function ToggleLanguageLink ({ language }) {
-    switch (language) {
-        case 'en-US':
-            return (
-                <CustomLink href="/pt-BR">
-                    Português (pt-BR)
+export default function ToggleLanguageLink ({ languageCode }) {
+    const alternateLanguages = getAvailableLanguages()
+        .filter(availableLanguage => availableLanguage.code !== languageCode);
+
+    return (
+        <>
+            {alternateLanguages.map(alternateLanguage => (
+                <CustomLink
+                    key={alternateLanguage.code}
+                    href={alternateLanguage.absoluteUrl.toString()}
+                >
+                    {alternateLanguage.label}
                 </CustomLink>
-            );
-
-        case 'pt-BR':
-            return (
-                <CustomLink href="/en-US">
-                    English (en-US)
-                </CustomLink>
-            );
-
-        default:
-            throw new Error(`Unexpected language: ${language}`);
-    }
+            ))}
+        </>
+    );
 }

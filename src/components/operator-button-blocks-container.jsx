@@ -7,33 +7,33 @@ import OperatorButtonBlockList from '~/components/operator-button-block-list';
 import OperatorButton from '~/components/operator-button';
 
 export default function OperatorButtonBlocksContainer ({
-    locale,
+    language,
     onRegularOperatorButtonClick,
     onWrappingOperatorButtonClick,
 }) {
     const blocks = [
         {
-            label: locale.parenthesesOperatorButtonBlockLabel,
+            label: language.parenthesesOperatorButtonBlockLabel,
             wrapping: operators.wrapping.parenthesis,
         },
         {
-            label: locale.negationOperatorButtonBlockLabel,
+            label: language.negationOperatorButtonBlockLabel,
             regular: operators.regular.negation,
         },
         {
-            label: locale.conjunctionOperatorButtonBlockLabel,
+            label: language.conjunctionOperatorButtonBlockLabel,
             regular: operators.regular.conjunction,
         },
         {
-            label: locale.disjunctionOperatorButtonBlockLabel,
+            label: language.disjunctionOperatorButtonBlockLabel,
             regular: operators.regular.disjunction,
         },
         {
-            label: locale.conditionalOperatorButtonBlockLabel,
+            label: language.conditionalOperatorButtonBlockLabel,
             regular: operators.regular.conditional,
         },
         {
-            label: locale.biconditionalOperatorButtonBlockLabel,
+            label: language.biconditionalOperatorButtonBlockLabel,
             regular: operators.regular.biconditional,
         },
     ];

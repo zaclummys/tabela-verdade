@@ -1,16 +1,19 @@
-import { NextResponse } from 'next/server';
 import { Negotiator } from 'negotiator';
+import { NextResponse } from 'next/server';
 
-const availableLanguages = ['en-US', 'pt-BR'];
+import { getAvailableLanguages } from 'src/languages';
 
 function getCurrentLanguageFromRequest (request) {
+    const availableLanguageCodes = getAvailableLanguages()
+        .map(availableLanguage => availableLanguage.code);
+
     const negotiator = new Negotiator({
         headers: {
             'accept-language': request.headers.get('accept-language'),
         },
     });
 
-    return negotiator.language(availableLanguages);
+    return negotiator.language(availableLanguageCodes);
 }
 
 function createRedirectUrlFromLanguage (request, language) {

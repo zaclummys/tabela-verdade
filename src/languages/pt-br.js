@@ -1,5 +1,6 @@
 const ptBR = {
-    language: 'pt-BR',
+    code: 'pt-BR',
+    label: 'Português (pt-BR)',
     direction: 'ltr',
 
     title: 'Gerador de Tabela-verdade | Gerar tabelas-verdade on-line',

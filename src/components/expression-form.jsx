@@ -8,7 +8,7 @@ import TruthTable from '~/components/truth-table';
 import OperatorButtonBlocksContainer from '~/components/operator-button-blocks-container';
 import generateTruthTable from '~/library';
 
-export default function ExpressionForm ({ locale }) {
+export default function ExpressionForm ({ language }) {
     const [
         truthTable,
         setTruthTable,
@@ -161,7 +161,7 @@ export default function ExpressionForm ({ locale }) {
         expressionInputHint,
         truthTableTrueCellLabel,
         truthTableFalseCellLabel,
-    } = locale;
+    } = language;
 
     return (
         <div className="grid gap-y-6">
@@ -174,7 +174,7 @@ export default function ExpressionForm ({ locale }) {
             />
 
             <OperatorButtonBlocksContainer
-                locale={locale}
+                language={language}
                 onRegularOperatorButtonClick={handleRegularOperatorButtonClick}
                 onWrappingOperatorButtonClick={handleWrappingOperatorButtonClick}
             />
