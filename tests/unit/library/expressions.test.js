@@ -1,5 +1,5 @@
 import {
-    AndExpression, BiconditionalExpression, ConditionalExpression, Expression,
+    AndExpression, BiconditionalExpression, ConditionalExpression,
     NameExpression, NotExpression, OrExpression,
 } from '~/library/expressions';
 
