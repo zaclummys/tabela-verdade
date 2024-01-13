@@ -10,7 +10,7 @@ export default function LinkAlternateLanguages () {
                     rel="alternate"
                     key={availableLanguage.code}
                     hrefLang={availableLanguage.code}
-                    // href={availableLanguage.absoluteUrl.toString()}
+                    href={availableLanguage.absoluteUrl.toString()}
                 />
             ))}
         </>
