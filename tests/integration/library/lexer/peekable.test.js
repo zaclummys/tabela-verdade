@@ -34,16 +34,4 @@ describe('Peekable Lexer', () => {
         expect(lexer.next()).toEqual(new Name('abc'));
         expect(lexer.peek()).toEqual(new Conditional());
     });
-
-    it('Should check if peeked token is of specified type', () => {
-        const lexer = createPeekableLexerFromString('¬');
-
-        expect(lexer.isPeekTypeOf(Not)).toBeTruthy();
-    });
-
-    it('Should check if peeked token is not of specified type', () => {
-        const lexer = createPeekableLexerFromString('&');
-
-        expect(lexer.isPeekTypeOf(Or)).toBeFalsy();
-    });
 });

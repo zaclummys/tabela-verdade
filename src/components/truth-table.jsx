@@ -18,7 +18,7 @@ export default function TruthTable ({
     truthTableTrueCellLabel,
     truthTableFalseCellLabel,
 }) {
-    if (truthTable == null) {
+    if (!truthTable) {
         return (
             <p className="text-center text-sm text-gray-500">
                 {truthTableHint}

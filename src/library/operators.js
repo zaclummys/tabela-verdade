@@ -20,7 +20,7 @@ import {
 
     RIGHTWARDS_ARROW,
     RIGHTWARDS_DOUBLE_ARROW,
-} from '~/library/characters';
+} from './characters';
 
 const wrapping = {
     parenthesis: {
@@ -60,7 +60,15 @@ const regular = {
     ],
 };
 
-export default {
+
+const longBiconditinalOperator = '<->';
+const longConditionalOperator = '->';
+
+const operators = {
     wrapping,
     regular,
+    longBiconditinalOperator,
+    longConditionalOperator,
 };
+
+export default operators;

@@ -8,7 +8,7 @@ describe('Expressions', () => {
         const expression = new Expression();
 
         expect(() => expression.isEqual(expression))
-            .toThrowError('Cannot call a abstract method');
+            .toThrowError();
     });
 
     describe('Name expression', () => {

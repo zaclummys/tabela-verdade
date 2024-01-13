@@ -1,8 +1,4 @@
-export class Expression {
-    isEqual () {
-        throw new Error('Cannot call a abstract method');
-    }
-}
+export class Expression {}
 
 export class UnaryExpression extends Expression {
     constructor (inner) {

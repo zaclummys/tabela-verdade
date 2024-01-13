@@ -4,22 +4,8 @@ export default class PeekableLexer {
         this.lexer = lexer;
     }
 
-    wasPeeked () {
-        return this.peeked != null;
-    }
-
-    wasNotPeeked () {
-        return this.peeked == null;
-    }
-
-    isPeekTypeOf (type) {
-        const peeked = this.peek();
-
-        return peeked instanceof type;
-    }
-
     peek () {
-        if (this.wasNotPeeked()) {
+        if (this.peeked === null) {
             this.peeked = this.lexer.next();
         }
 
@@ -35,10 +21,10 @@ export default class PeekableLexer {
     }
 
     next () {
-        if (this.wasPeeked()) {
-            return this.take();
-        } else {
+        if (this.peeked === null) {
             return this.lexer.next();
+        } else {
+            return this.take();
         }
     }
 

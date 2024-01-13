@@ -1,39 +1,33 @@
 export default class Source {
-    constructor (input) {
+    constructor (string) {
         this.offset = 0;
-        this.input = input;
+        this.string = string;
     }
 
-    span (start, end) {
-        return this.input.slice(
-            start,
-            end
-        );
+    span (startOffset, endOffset) {
+        return this.string.slice(startOffset, endOffset);
     }
 
     peek () {
-        return this.input[this.offset];
+        return this.string.at(this.offset);
     }
 
     bump () {
         this.offset += 1;
     }
 
-    takeWhile (f) {
-        const start = this.offset;
+    takeWhile (fn) {
+        const startOffset = this.offset;
 
-        this.skipWhile(f);
+        this.skipWhile(fn);
 
-        const end = this.offset;
+        const endOffset = this.offset;
 
-        return this.span(
-            start,
-            end
-        );
+        return this.span(startOffset, endOffset);
     }
 
-    skipWhile (f) {
-        while (f(this.peek())) {
+    skipWhile (fn) {
+        while (fn(this.peek())) {
             this.bump();
         }
     }

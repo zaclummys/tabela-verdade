@@ -30,20 +30,18 @@ export default class Parser {
         this.lexer = lexer;
     }
 
-    check (type) {
-        return this.lexer.isPeekTypeOf(type);
-    }
-
     match (type) {
-        if (this.check(type)) {
+        if (this.lexer.peek() instanceof type) {
             return this.lexer.next();
+        } else {
+            return null;
         }
     }
 
     parse () {
         const expression = this.parseBiconditionalExpression();
 
-        if (this.check(End)) {
+        if (this.lexer.peek() instanceof End) {
             return expression;
         }
 
@@ -56,7 +54,7 @@ export default class Parser {
         if (this.match(Biconditional)) {
             return new BiconditionalExpression(
                 expression,
-                this.parseBiconditionalExpression()
+                this.parseBiconditionalExpression(),
             );
         }
 
@@ -69,7 +67,7 @@ export default class Parser {
         if (this.match(Conditional)) {
             return new ConditionalExpression(
                 expression,
-                this.parseConditionalExpression()
+                this.parseConditionalExpression(),
             );
         }
 
@@ -82,7 +80,7 @@ export default class Parser {
         if (this.match(Or)) {
             return new OrExpression(
                 expression,
-                this.parseOrExpression()
+                this.parseOrExpression(),
             );
         }
 
@@ -95,7 +93,7 @@ export default class Parser {
         if (this.match(And)) {
             return new AndExpression(
                 expression,
-                this.parseAndExpression()
+                this.parseAndExpression(),
             );
         }
 
