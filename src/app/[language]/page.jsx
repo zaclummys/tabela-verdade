@@ -12,6 +12,9 @@ import HeaderDescription from '~/components/header-description';
 import ToggleLanguageLink from '~/components/toggle-language-link';
 import ExpressionForm from '~/components/expression-form';
 
+const linkedInUrl = 'https://www.linkedin.com/in/isaac-luiz-vieira-ferreira/';
+const repositoryUrl = 'https://github.com/zaclummys/tabela-verdade';
+
 export const generateMetadata = ({ params: { language } }) => {
     const { title, description } = getLocaleByLanguage(language);
 
@@ -23,9 +26,6 @@ export const generateMetadata = ({ params: { language } }) => {
 
 export default function Home ({ params: { language } }) {
     const locale = getLocaleByLanguage(language);
-
-    const linkedInUrl = 'https://www.linkedin.com/in/isaac-luiz-vieira-ferreira/';
-    const repositoryUrl = 'https://github.com/zaclummys/tabela-verdade';
 
     return (
         <div className="container mx-auto flex flex-col gap-y-8 mt-8 px-8">
