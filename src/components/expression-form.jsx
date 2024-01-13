@@ -164,7 +164,7 @@ export default function ExpressionForm ({ locale }) {
     } = locale;
 
     return (
-        <div>
+        <div className="grid gap-y-6">
             <ExpressionInput
                 inputRef={expressionInputRef}
                 value={expressionInputValue}
